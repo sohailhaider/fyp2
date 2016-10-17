@@ -1,0 +1,73 @@
+﻿@model Web_omlate.Models.AssessmentSubmission
+
+@{
+    ViewBag.Title = "SubmitAssessment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
+
+
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Submit Assessment</h4>
+                </div>
+
+                @using (Html.BeginForm("SubmitAssessment", "Learner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        <div style="color: red"> @ViewBag.msg</div>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("Assessment Title", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DisplayName(((string)ViewBag.AssessmentTitle).ToString())
+                            </div>
+                        </div>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("Points", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DisplayName(((int)ViewBag.Points).ToString())
+                            </div>
+                        </div>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("Due Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DisplayName(((DateTime)ViewBag.DueDate).ToString())
+                            </div>
+                        </div>
+
+                        @Html.Hidden("AssessmentID", (int)ViewBag.AssessmentID)
+                        @Html.Hidden("courseId", (int)ViewBag.courseId)
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input name="File" id="File" type="file" class="form-control" required accept=".xls,.xlsx,.docx,.doc,.pdf,.flv,.avi,.ppt,.jpeg,.jpg,.png" />
+                                @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

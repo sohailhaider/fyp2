@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+ <!--<![endif]-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Omni Learning and Teaching Environment">
+    <meta name="author" content="cSquare">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="~/assets/images/content/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="~/assets/images/content/favicon-32x32.png">
+    <title>@ViewBag.Title</title>
+
+    @System.Web.Optimization.Styles.Render("~/bundles/css")
+    @System.Web.Optimization.Scripts.Render("~/bundles/js")
+
+</head>
+
+<body class="cssAnimate ct-headroom--scrollUpMenu onepager">
+    <div class="ct-preloader"><div class="ct-preloader-content"></div></div>
+
+    <div class="ct-preloader"><div class="ct-preloader-content"></div></div>
+
+        <!-- Header -->
+        <div class="ct-navbarMobile">
+            <a class="navbar-brand" href="@Url.Action("Index","Default")"><img src="~/assets/images/content/logo.png" alt="OmLATE Logo"> </a>
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Header -->
+        @Html.Partial("~/Views/Default/_DefaultHeader.cshtml")
+
+        <!-- Nav Bar -->
+        @Html.Partial("~/Views/Default/_DefaultNav.cshtml")
+
+        <!--Login Modal-->
+        @Html.Partial("~/Views/Default/_LoginModal.cshtml")
+
+        <!--SignUp Modal-->
+        @Html.Partial("~/Views/Default/_SignUpModal.cshtml")
+
+        @RenderBody();
+
+        <footer>
+            @Html.Partial("_Footer")
+        </footer>
+    </div>
+    <!-- JavaScripts -->
+    @System.Web.Optimization.Scripts.Render("~/bundles/js")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+    @System.Web.Optimization.Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

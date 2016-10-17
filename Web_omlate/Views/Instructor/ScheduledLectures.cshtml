@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Web_omlate.Models.LectureSchedule>
+
+@{
+    ViewBag.Title = "ScheduledLectures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Scheduled Lectures</h4>
+                </div>
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferedCourse.Course.CourseCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferedCourse.Course.CourseTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LectureDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LectureTime)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Lecture Resources")
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfferedCourse.Course.CourseCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfferedCourse.Course.CourseTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LectureDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LectureTime)
+                            </td>
+                            <td>
+                                @Html.ActionLink("View Resources", "ViewResources", new {lectureId = item.LectureScheduleID})
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

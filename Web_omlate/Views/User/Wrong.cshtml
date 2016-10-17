@@ -1,0 +1,34 @@
+﻿@{ 
+    ViewBag.Title = "Page Not Found";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ct-site--map ct-u-backgroundDark">
+    <div class="container">
+        <div class="ct-u-displayTableVertical text-capitalize">
+            <div class="ct-u-displayTableCell">
+                <span class="ct-u-textBig">
+                    Not Found
+                </span>
+            </div>
+            <div class="ct-u-displayTableCell text-right">
+                <span class="ct-u-textNormal ct-u-textItalic">
+                    <a href="">Home</a> / <a href="#"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="ct-u-paddingBoth100 text-center ct-u-backgroundGradient">
+    <div class="container">
+        <div class="ct-box404">
+            <span class="ct-box404--title ct-fw-700 ct-u-colorWhite"></span>
+            <span class="text-uppercase ct-box404--subTitle ct-fw-700 ct-u-marginBottom40">Error!</span>
+            <div class="ct-box404--description ct-fw-300 ct-u-marginBottom40">
+                <span>We're sorry, something went wrong.</span>
+                <span>You can go back to</span>
+            </div>
+            <a href="@Url.Action("Index","Default")" class="btn btn-dark btn-sm">Back to home</a>
+        </div>
+    </div>
+</section>

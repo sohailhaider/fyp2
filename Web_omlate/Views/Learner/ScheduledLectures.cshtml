@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Web_omlate.Models.LectureSchedule>
+
+@{
+    ViewBag.Title = "ScheduledLectures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
+
+
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">ScheduledLectures</h4>
+                </div>
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferedCourse.Course.CourseCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferedCourse.Course.CourseTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LectureDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LectureTime)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfferedCourse.Course.CourseCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfferedCourse.Course.CourseTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LectureDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LectureTime)
+                            </td>
+                            <td>
+                                <a class="btn btn-default" href="@Url.Action("TakeLecture", "Learner", new {LectureScheduleID = item.LectureScheduleID})">
+                                    Take Lecture
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

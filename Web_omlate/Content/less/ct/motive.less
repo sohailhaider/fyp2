@@ -1,0 +1,637 @@
+.ct-u-colorMotive{
+  color: @motive;
+}
+
+a{
+  &:hover, &:focus, &:active{
+    color: @motive;
+  }
+}
+
+.popover{
+  .popover-title{
+    background-color: @motive;
+  }
+}
+
+//Navbar
+
+nav.navbar{
+  .navbar-nav{
+    .active{
+      a{
+        color: @motive;
+        &:hover{
+          color: @motive;
+        }
+      }
+    }
+    li{
+      a{
+        &:hover{
+          color: @motive;
+        }
+      }
+    }
+    .dropdown-menu{
+      .active{
+        a{
+          background-color: @motive;
+          color: #fff;
+        }
+      }
+      li{
+        a{
+          &:hover{
+            background-color: @motive;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+nav.yamm .navbar-nav{
+  .dropdown-menu{
+    .yamm-content{
+      .active{
+        color: @motive;
+      }
+      a{
+        &:hover{
+          color: @motive;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.ct-navbarCart{
+  &:hover{
+    i{
+      color: @motive;
+    }
+  }
+  .ct-navbarCart--Info{
+    .ct-navbarCart--Item{
+      &:hover{
+        &:after{
+          color: @motive;
+        }
+        .ct-navbarCart--itemName{
+          color: @motive;
+        }
+      }
+    }
+    .ct-navbarCart--summary{
+      a{
+        &:hover{
+          color: @motive;
+          i{
+            color: @motive;
+          }
+        }
+      }
+    }
+  }
+}
+
+nav.navbar-scroll-top.navbar-transparent{
+  .ct-navbarCart, .ct-navbarSearch--icon{
+    &:hover{
+      color: @motive;
+    }
+  }
+}
+
+.navbar-headerTop{
+  input{
+    &:focus{
+      border: 1px solid @motive;
+    }
+  }
+  .btn-group{
+    .dropdown-menu{
+      li{
+        a{
+          &:hover{
+            color: @motive;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ct-navbarSearch--icon, .ct-navbar--cart{
+  &:hover{
+    color: @motive;
+  }
+}
+
+.ct-topBar .btn-group .dropdown-menu li a{
+  &:hover{
+    color: @motive;
+  }
+}
+
+.ct-topBar--dark{
+  a{
+    color: @motive;
+  }
+  button.btn{
+    color: @motive;
+  }
+}
+
+.ct-topBar--motive{
+  background-color: @motive;
+  button.btn{
+    background-color: @motive;
+  }
+}
+
+.ct-menuMobile .ct-menuMobile-navbar {
+  > .active > a{
+    color: @motive;
+  }
+  li{
+    a{
+      &:hover{
+        color: @motive;
+      }
+    }
+  }
+  .dropdown-menu > .active > a{
+    color: @motive;
+  }
+}
+
+//Buttons
+
+.btn-primary{
+  background-color: @motive;
+  border-color: @motive;
+}
+
+.btn-primaryDark{
+  background-color: @motive;
+  border-color: @motive;
+}
+
+.btn-bordered--dark{
+  &:hover,
+  &:focus,
+  &:active,
+  &.active{
+    background-color: @motive;
+    border-color: @motive;
+  }
+}
+
+.btn-bordered--Light{
+  &:hover,
+  &:focus,
+  &:active,
+  &.active{
+    background-color: @motive;
+    border-color: @motive;
+  }
+}
+
+//Icon Box
+
+.ct-iconBox{
+  .ct-icon--description{
+    a{
+      color: @motive;
+    }
+  }
+}
+
+.ct-iconBox--transparent{
+  .ct-icon{
+    border: 2px solid @motive;
+    color: @motive;
+  }
+  &:hover{
+    .ct-icon{
+      background-color: @motive;
+      color: #fff;
+    }
+  }
+}
+
+.ct-iconBox--solid{
+  .ct-icon{
+    background-color: @motive;
+  }
+  &:hover{
+    .ct-icon{
+      background-color: #2d2d2d;
+    }
+  }
+}
+
+.ct-iconBox--solidDark{
+  &:hover{
+    .ct-icon{
+      background-color: @motive;
+    }
+  }
+}
+
+.ct-iconBox--solidYellow{
+  &:hover{
+    .ct-icon{
+      background-color: @motive;
+    }
+  }
+}
+
+.ct-iconBox--solidBlue{
+  &:hover{
+    .ct-icon{
+      background-color: @motive;
+    }
+  }
+}
+
+.ct-iconBox--solidRed{
+  &:hover{
+    .ct-icon{
+      background-color: @motive;
+    }
+  }
+}
+
+.ct-iconBox--solidBorder{
+  .ct-icon{
+    background-color: @motive;
+    border: 10px solid @motive;
+  }
+}
+
+.ct-price--discount{
+  color: @motive;
+}
+
+//Tabs
+
+.nav-tabs, .nav-tabs.nav-justified{
+  li, li.active{
+    a{
+      &:hover, &:focus{
+        color: @motive;
+      }
+    }
+  }
+  li.active{
+    a{
+      color: @motive;
+    }
+  }
+}
+
+//Product Box
+
+.ct-productBox{
+  &:hover{
+    .ct-productDescription{
+      h1,h2,h3,h4,h5,h6{
+        color: @motive;
+      }
+    }
+  }
+}
+
+//Slick
+
+.slick-dots{
+  .slick-active{
+    border: 3px solid @motive;
+  }
+}
+
+//Gallery
+
+.ct-gallery-filters {
+  li{
+    >a{
+      &:hover{
+        color: @motive;
+      }
+    }
+    a.active{
+      color: @motive;
+    }
+  }
+}
+
+//Modal
+
+.modal-header{
+  color: @motive;
+  .close{
+    color: @motive;
+    &:hover{
+      background-color: @motive;
+    }
+  }
+}
+
+//footer
+
+footer{
+  .ct-copyright{
+    li{
+      &:first-child{
+        border-right: 1px solid @motive;
+      }
+    }
+  }
+}
+
+.ct-footer{
+  padding: 48px 0;
+  background-color: #191919;
+  .ct-copyright, .ct-copyright a{
+    a{
+      &:hover{
+        color: @motive;
+      }
+    }
+  }
+}
+
+.widget-latestPosts{
+  .media{
+    &:hover{
+      .ct-textInHover{
+        color: @motive;
+      }
+    }
+  }
+}
+
+.widget-socialsFullWidth{
+  a{
+    &:hover{
+      i{
+        color: @motive;
+      }
+    }
+  }
+}
+
+//Hover images
+
+.ct-hoverImage--rectangle{
+  &:hover{
+    img{
+      border: 2px solid @motive;
+    }
+  }
+}
+
+.ct-textBox{
+  a{
+    color: @motive;
+  }
+}
+
+.ct-textBox--withNumber{
+  background-color: @motive;
+}
+
+//Pricebox
+
+.ct-priceBox{
+  .btn-default{
+    &:hover{
+      background-color:  @motive;
+    }
+  }
+}
+
+.ct-priceBox-active{
+  border-top: 3px solid @motive;
+  .ct-priceBox-fullPrice{
+    color: @motive;
+  }
+}
+
+//List
+
+.list-group{
+  .active{
+    border: 1px solid @motive;
+    background-color: @motive;
+
+  }
+}
+
+.ct-list-default{
+  li{
+    &:before{
+      color: @motive;
+    }
+  }
+}
+
+.ct-list-hyperlink{
+  li{
+    &:before{
+      color: @motive;
+    }
+  }
+}
+
+.ct-list-locked{
+  li{
+    &:first-child{
+      background-color: @motive;
+    }
+    a{
+      color: @motive;
+    }
+  }
+}
+
+.ct-list-bordered{
+  a{
+    &:hover{
+      color: @motive;
+    }
+  }
+}
+
+//Person Box
+
+.ct-personBox{
+  a{
+    color: @motive;
+  }
+}
+
+.ct-socials--singleMember{
+  li{
+    a{
+      &:hover{
+        background-color: @motive;
+      }
+    }
+  }
+}
+
+//Progress path course
+
+.ct-progressPath{
+  .dropdown-menu {
+    .ct-progressPart--completed{
+      color: @motive;
+      &:before{
+        border-color: @motive;
+      }
+    }
+  }
+}
+
+//Blog
+
+.ct-article{
+  .ct-article-title{
+    a{
+      &:hover{
+        color: @motive;
+      }
+    }
+  }
+  .ct-article-meta{
+    a{
+      &:hover{
+        color: @motive;
+      }
+    }
+  }
+  .ct-article-description{
+    a{
+      color: @motive;
+    }
+  }
+}
+
+blockquote{
+  border-left: 5px solid @motive;
+}
+
+.ct-blog--thumbnail{
+  .media-body{
+    a{
+      color: @motive;
+    }
+  }
+}
+
+//Twitter
+
+.ct-twitter{
+  a{
+    color: @motive;
+  }
+  .tweet_text{
+    .at{
+      color: @motive;
+    }
+  }
+}
+
+.ct-search-widget{
+  input{
+    &:focus{
+      border: 1px solid @motive;
+    }
+  }
+}
+
+.ct-input--type1{
+  &:focus{
+    border: 1px solid @motive;
+  }
+}
+
+/* Custom Checbox */
+
+.ct-checbox--custom {
+  input[type=checkbox]:checked + label:before {
+    color: @motive;
+    background-color: @motive;
+  }
+}
+
+.ct-widget-latestPosts{
+  li{
+    .widget-latest-posts-content{
+      a{
+        &:hover{
+          color: @motive;
+        }
+      }
+    }
+  }
+}
+
+.tagcloud{
+  a{
+    &:hover{
+      background-color: @motive;
+    }
+  }
+}
+
+//Pagination
+
+.pagination{
+  li{
+    a{
+      &:hover{
+        background-color: @motive;
+      }
+    }
+  }
+  .active{
+    a{
+      background-color: @motive;
+      &:hover{
+        background-color: @motive;
+      }
+    }
+  }
+}
+
+//counter
+
+.ct-counterBox{
+  p{
+    &:before{
+      background-color: @motive;
+    }
+  }
+}
+
+.ct-counterBox--withIcon{
+  .ct-counterBox-icon {
+    color: @motive;
+  }
+  &:hover{
+    .ct-counterBox-icon{
+      background-color: @motive;
+    }
+  }
+}
+
+.progress-bar-primary{
+  background-color: @motive;
+}

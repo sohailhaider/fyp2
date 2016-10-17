@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ViewQuiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Nav Bar -->
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+
+<div class="container ct-u-paddingBoth20">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">All Quizs<p class="pull-right text-right btn btn-default" style="font-size:15px;text-decoration:underline">
+    @Html.ActionLink("Create Quiz", "CreateQuiz", "Instructor", new { ViewBag.quizId }, null)
+</p></h4>
+                </div>
+                @{ var i = 1;}
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("S.No")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Quiz Title")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Course")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Duration")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Deadline")
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in ViewBag.quizs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayName(i.ToString())
+                            </td>
+                            <td>
+                                <a href="~/Instructor/EditQuiz?quizId=@item.QuizID">@item.QuizTitle</a>
+                            </td>
+                            <td>
+                                @foreach (var it2 in @ViewBag.offeredCourses)
+                                {
+                                    if(it2.OfferedCourseID == item.offeredCourseID)
+                                    {
+                                        @it2.Course.CourseTitle
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @item.Duration mints
+                            </td>
+                            <td>
+                                @{ 
+                                    var v =String.Format("{0:dd MMM yyyy}", item.Deadline);
+                                }
+                                @v
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

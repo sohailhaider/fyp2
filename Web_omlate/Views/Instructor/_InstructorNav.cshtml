@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-default yamm " data-heighttopbar="60px" data-startnavbar="0">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="@Url.Action("Index", "Instructor")"><img src="~/assets/images/content/logo.png" alt="logo" /></a>
+        </div>
+        <div class="ct-navbar--fluid pull-right">
+            <ul class="nav navbar-nav ct-navbar--fadeInUp">
+                <li class="dropdown yamm-fw active">
+                    <a href="@Url.Action("Index", "Instructor")">Home</a>
+                </li>
+                <li class="dropdown-submenu yamm-dropdown">
+                    <a href="@Url.Action("Index", "Instructor")">Courses</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("OfferACourse", "Instructor")">Offer A Course</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Instructor")">My Offered Courses</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Instructor")">Course Schedules</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown yamm-fw">
+                    <a href="@Url.Action("ViewQuiz", "Instructor")">Quizs</a>
+                </li>
+                <li class="dropdown-submenu yamm-dropdown">
+                    <a href="@Url.Action("Index", "Instructor")">Schedules</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("ScheduleLecture", "Instructor")">Schedule A Lecture</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ScheduledLectures", "Instructor")">Scheduled Lectures</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

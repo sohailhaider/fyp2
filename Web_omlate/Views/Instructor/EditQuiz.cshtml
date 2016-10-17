@@ -1,0 +1,62 @@
+﻿@using Web_omlate.Models;
+@{
+    ViewBag.Title = "Edit Quiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Edit Quiz<p class="pull-right text-right btn btn-default" style="font-size:15px;text-decoration:underline">
+    @Html.ActionLink("Add Question", "AddQuestionToQuiz", "Instructor", new { ViewBag.quizId }, null)
+</p></h4>
+                    
+                </div>
+                    <div class="panel-group" id="accordion">
+                            @if(ViewBag.questions.Count == 0)
+                            {
+                                <h4>No Question Found</h4>
+                            }
+
+                            @foreach (QuizQuestion question in ViewBag.questions)
+                            {
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#@question.ID"  aria-controls="@question.ID">
+                                                    @question.QuestionStatement
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="@question.ID" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <b>Options:</b>@{ 
+                                                    var arr = question.Options.Split(new String[]{"!#!#!"}, StringSplitOptions.RemoveEmptyEntries);
+                                                    int temp = int.Parse(question.Answer);
+                                                    var qId = question.ID;
+                                                    var quizId = ViewBag.quizId;
+                                                }
+                                                <ul>
+                                                @foreach (var item in arr)
+                                                {
+                                                    <li>@item</li>
+                                                }
+                                                </ul>
+                                                <b>Answer:</b> @arr[temp - 1]
+                                                @Html.ActionLink("Remove Question", "RemoveQuestion", "Instructor", new { qId, quizId }, new { @class="pull-right"})
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                            }
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

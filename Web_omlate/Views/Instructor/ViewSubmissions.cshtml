@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Web_omlate.Models.ViewSubmissionViewModel>
+
+@{
+    ViewBag.Title = "ViewSubmissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+
+
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">ViewSubmissions</h4>
+                </div>
+
+                <div style="color: red"> @ViewBag.msg</div>
+                <hr />
+                <table class="table">
+                    <tr>
+
+                        <th>
+                            @Html.DisplayName("Submitted By")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SubmissionTime)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Download")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LearnerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubmissionTime)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Download", "DownloadSubmission", new { id = item.SubmissionId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

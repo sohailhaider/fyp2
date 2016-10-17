@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "UploadResource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Upload Resource</h4>
+                </div>
+
+
+                @using (Html.BeginForm("UploadResource", "Instructor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <div style="color: red"> @ViewBag.msg</div>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.Hidden("LectureScheduleID", (Int32)ViewBag.lectureid);
+                        <div class="form-group">
+                            @Html.Label("File Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-8">
+                                @Html.Editor("FileName", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("File", htmlAttributes: new {@class = "control-label col-md-2"})
+                            <div class="col-md-8">
+                                <input name="file" id="file" class="form-control" type="file" required accept=".xls,.xlsx,.docx,.doc,.pdf,.flv,.avi,.ppt,.jpeg,.jpg,.png" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                <input type="submit" value="Upload" class="btn btn-default"/>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+}

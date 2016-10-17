@@ -1,0 +1,144 @@
+﻿@model Web_omlate.Models.User
+<div class="modal ct-modal ct-js-modal-signup fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span></button>
+                <h3 class="modal-title text-uppercase">Signup</h3>
+            </div>
+            @{
+                List<SelectListItem> userTypes = new List<SelectListItem>();
+                userTypes.Add(new SelectListItem
+                {
+                    Text = "Learner",
+                    Value = "learner",
+                    Selected = true
+                });
+                userTypes.Add(new SelectListItem
+                {
+                    Text = "Instructor",
+                    Value = "instructor"
+                });
+
+                List<SelectListItem> educationalFiels = new List<SelectListItem>();
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Business",
+                    Value = "Business",
+                    Selected = true
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Social Sciences",
+                    Value = "Social_Sciences",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Computer Science",
+                    Value = "Computer_Science",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Engineering",
+                    Value = "Engineering",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Arts and Humanities",
+                    Value = "Arts",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Life Sciences",
+                    Value = "Life_Sciences",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Data Science",
+                    Value = "Data_Science",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Personal Development",
+                    Value = "Personal_Development",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Math and Logic",
+                    Value = "Math",
+                });
+                educationalFiels.Add(new SelectListItem
+                {
+                    Text = "Language Learning",
+                    Value = "Language_Learning",
+                });
+            }
+            <div class="modal-body">
+                @using (Html.BeginForm("SaveSignUp", "User", FormMethod.Post, new { @class = "ct-u-paddingBottom100" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group ct-u-marginBottom50">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control ct-input--type1 input-hg", @placeholder = "Full Name"}})
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Full Name" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Username" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Password", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Email", @type = "email" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Phone Number" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label style="font-size: 30px; margin-top: 10px; margin-left:25px;">Educational Field </label>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.Field, educationalFiels, new { @class = "form-control ct-input--type1 input-hg ct-u-marginBottom50" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label style="font-size: 30px; margin-top: 10px; margin-left:25px;">Sign up as </label>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.Type, userTypes, new { @class = "form-control ct-input--type1 input-hg ct-u-marginBottom50" })
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg text-uppercase"><span>Sign Up</span></button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

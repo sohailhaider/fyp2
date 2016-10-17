@@ -1,0 +1,35 @@
+﻿@model Web_omlate.Models.UserLoginModel
+<div class="modal ct-modal ct-js-modal-login fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span></button>
+                <h3 class="modal-title text-uppercase">Login</h3>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("LoginUser", "User", FormMethod.Post, new { @class = "ct-u-paddingBottom100" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group ct-u-marginBottom50">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.EditorFor(model=>model.Email, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Email", @type = "email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        <br>
+
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg ", @placeholder = "Password", @type = "password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg text-uppercase"><span>Sign In</span></button>
+                        <div class="ct-u-marginTop50">
+                            <a href="@Url.Action("SignUp","Default")"><i class="fa fa-long-arrow-right"></i> Register Now ?</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

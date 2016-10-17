@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Web_omlate.Models.LectureResource>
+
+@{
+    ViewBag.Title = "ViewResources";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
+<div class="container ct-u-paddingBoth100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading">
+                    <h4 class="ct-fw-700 ct-u-colorMotive">View Resources</h4>
+                </div>
+
+                <div style="color: red"> @ViewBag.msg</div>
+                <hr>
+
+                <p>
+                    @Html.ActionLink("Add New Resource", "UploadResource", new { lectureid = (Int32)ViewBag.LectureScheduleID })
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("S.No")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FileName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ResourceType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateTime)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @{var i = 1;}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayName(i.ToString())
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FileName)
+                            </td>
+                            <th>
+                                @Html.DisplayName(item.ResourceType)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateTime)
+                            </td>
+                            <td>
+                                @Html.ActionLink("View", "DownloadFile", new { id = item.LectureResourceID, lectureid = (Int32)ViewBag.LectureScheduleID })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "DeleteFile", new { id = item.LectureResourceID, lectureid = (Int32)ViewBag.LectureScheduleID })
+                            </td>
+                        </tr>
+                        i++;
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

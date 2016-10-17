@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Web_omlate.Models.OfferedCoursesViewModel>
+@using Web_omlate.Models
+@{
+    ViewBag.Title = "ViewOfferedCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
+
+<section class="ct-u-paddingBoth100 ct-u-doubleBorder ct-u-backgroundLightGreen">
+    <div class="container">
+        <div class="ct-u-marginBottom40">
+        </div>
+        <div class="ct-u-marginBottom40">
+            <div class="ct-heading--withButton">
+                <h3 class="ct-fw-700 pull-left">Offered Courses</h3>
+                
+                <div class="clearfix"></div>
+            </div>
+            <div class="ct-divider ct-u-marginTop100 ct-u-marginBottom50">
+                <div class="ct-divider ct-u-marginTop100 ct-u-marginBottom50"></div>
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                        <div class="col-sm-6 col-md-3">
+                            <div class="ct-productBox ct-u-marginBottom30">
+                                <a href="@Url.Action("ViewCourseDetails", "Learner", new { offeredCourseId=@item.OfferedCourseID })">
+                                    <div class="ct-productImage">
+                                        <img src="~/Content/images/content/productBox-21.jpg" alt="Product">
+                                    </div>
+                                    <div class="ct-productDescription">
+                                        <h5 class="ct-fw-600 ct-u-marginBottom10">@(item.Course.CourseCode.ToString()+" - "+ item.Course.CourseTitle.ToString() + "")</h5>
+                                        <span>@item.Course.CourseCategory.CategoryName</span>
+                                    </div>
+                                </a>
+                                <div class="ct-productMeta">
+                                    <div class="ct-u-displayTableVertical">
+                                        <div class="ct-u-displayTableCell">
+                                              </div>
+                                        <div class="ct-u-displayTableCell">
+                                            <a href="@Url.Action("ViewInstructorDetails", "Instructor", new { id=item.OfferedByID })">
+                                                <div class="ct-u-displayTableCell">
+                                                    @item.OfferedByID <i class="fa fa-user"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                            <div class="ct-u-displayTableCell">
+                                                <span class="ct-u-colorMotive"></span>
+                                                <span class="ct-u-textLineThrough"></span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        }
+                        <div class="clearfix visible-sm"></div>
+                    </div>
+
+                </div>
+            
+        </div>
+    </div>
+</section>

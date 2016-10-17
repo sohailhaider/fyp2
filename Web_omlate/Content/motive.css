@@ -1,0 +1,308 @@
+.ct-u-colorMotive{
+  color: #82b540;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #82b540;
+}
+.popover .popover-title {
+  background-color: #82b540;
+}
+nav.navbar .navbar-nav .active a {
+  color: #82b540;
+}
+nav.navbar .navbar-nav .active a:hover {
+  color: #82b540;
+}
+nav.navbar .navbar-nav li a:hover {
+  color: #82b540;
+}
+nav.navbar .navbar-nav .dropdown-menu .active a {
+  background-color: #82b540;
+  color: #fff;
+}
+nav.navbar .navbar-nav .dropdown-menu li a:hover {
+  background-color: #82b540;
+  color: #fff;
+}
+nav.yamm .navbar-nav .dropdown-menu .yamm-content .active {
+  color: #82b540;
+}
+nav.yamm .navbar-nav .dropdown-menu .yamm-content a:hover {
+  color: #82b540;
+  background-color: transparent;
+}
+.ct-navbarCart:hover i {
+  color: #82b540;
+}
+.ct-navbarCart .ct-navbarCart--Info .ct-navbarCart--Item:hover:after {
+  color: #82b540;
+}
+.ct-navbarCart .ct-navbarCart--Info .ct-navbarCart--Item:hover .ct-navbarCart--itemName {
+  color: #82b540;
+}
+.ct-navbarCart .ct-navbarCart--Info .ct-navbarCart--summary a:hover {
+  color: #82b540;
+}
+.ct-navbarCart .ct-navbarCart--Info .ct-navbarCart--summary a:hover i {
+  color: #82b540;
+}
+nav.navbar-scroll-top.navbar-transparent .ct-navbarCart:hover,
+nav.navbar-scroll-top.navbar-transparent .ct-navbarSearch--icon:hover {
+  color: #82b540;
+}
+.navbar-headerTop input:focus {
+  border: 1px solid #82b540;
+}
+.navbar-headerTop .btn-group .dropdown-menu li a:hover {
+  color: #82b540;
+}
+.ct-navbarSearch--icon:hover,
+.ct-navbar--cart:hover {
+  color: #82b540;
+}
+.ct-topBar .btn-group .dropdown-menu li a:hover {
+  color: #82b540;
+}
+.ct-topBar--dark a {
+  color: #82b540;
+}
+.ct-topBar--dark button.btn {
+  color: #82b540;
+}
+.ct-topBar--motive {
+  background-color: #82b540;
+}
+.ct-topBar--motive button.btn {
+  background-color: #82b540;
+}
+.ct-menuMobile .ct-menuMobile-navbar > .active > a {
+  color: #82b540;
+}
+.ct-menuMobile .ct-menuMobile-navbar li a:hover {
+  color: #82b540;
+}
+.ct-menuMobile .ct-menuMobile-navbar .dropdown-menu > .active > a {
+  color: #82b540;
+}
+.btn-primary {
+  background-color: #82b540;
+  border-color: #82b540;
+}
+.btn-primaryDark {
+  background-color: #82b540;
+  border-color: #82b540;
+}
+.btn-bordered--dark:hover,
+.btn-bordered--dark:focus,
+.btn-bordered--dark:active,
+.btn-bordered--dark.active {
+  background-color: #82b540;
+  border-color: #82b540;
+}
+.btn-bordered--Light:hover,
+.btn-bordered--Light:focus,
+.btn-bordered--Light:active,
+.btn-bordered--Light.active {
+  background-color: #82b540;
+  border-color: #82b540;
+}
+.ct-iconBox .ct-icon--description a {
+  color: #82b540;
+}
+.ct-iconBox--transparent .ct-icon {
+  border: 2px solid #82b540;
+  color: #82b540;
+}
+.ct-iconBox--transparent:hover .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solid .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solidDark:hover .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solidYellow:hover .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solidBlue:hover .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solidRed:hover .ct-icon {
+  background-color: #82b540;
+}
+.ct-iconBox--solidBorder .ct-icon {
+  background-color: #82b540;
+  border: 10px solid #82b540;
+}
+.ct-price--discount {
+  color: #82b540;
+}
+.nav-tabs li a:hover,
+.nav-tabs.nav-justified li a:hover,
+.nav-tabs li.active a:hover,
+.nav-tabs.nav-justified li.active a:hover,
+.nav-tabs li a:focus,
+.nav-tabs.nav-justified li a:focus,
+.nav-tabs li.active a:focus,
+.nav-tabs.nav-justified li.active a:focus {
+  color: #82b540;
+}
+.nav-tabs li.active a,
+.nav-tabs.nav-justified li.active a {
+  color: #82b540;
+}
+.ct-productBox:hover .ct-productDescription h1,
+.ct-productBox:hover .ct-productDescription h2,
+.ct-productBox:hover .ct-productDescription h3,
+.ct-productBox:hover .ct-productDescription h4,
+.ct-productBox:hover .ct-productDescription h5,
+.ct-productBox:hover .ct-productDescription h6 {
+  color: #82b540;
+}
+.slick-dots .slick-active {
+  border: 3px solid #82b540;
+}
+.ct-gallery-filters li > a:hover {
+  color: #82b540;
+}
+.ct-gallery-filters li a.active {
+  color: #82b540;
+}
+.modal-header {
+  color: #82b540;
+}
+.modal-header .close {
+  color: #82b540;
+}
+.modal-header .close:hover {
+  background-color: #82b540;
+}
+footer .ct-copyright li:first-child {
+  border-right: 1px solid #82b540;
+}
+.ct-footer {
+  padding: 48px 0;
+  background-color: #191919;
+}
+.ct-footer .ct-copyright a:hover,
+.ct-footer .ct-copyright a a:hover {
+  color: #82b540;
+}
+.widget-latestPosts .media:hover .ct-textInHover {
+  color: #82b540;
+}
+.widget-socialsFullWidth a:hover i {
+  color: #82b540;
+}
+.ct-hoverImage--rectangle:hover img {
+  border: 2px solid #82b540;
+}
+.ct-textBox a {
+  color: #82b540;
+}
+.ct-textBox--withNumber {
+  background-color: #82b540;
+}
+.ct-priceBox .btn-default:hover {
+  background-color: #82b540;
+}
+.ct-priceBox-active {
+  border-top: 3px solid #82b540;
+}
+.ct-priceBox-active .ct-priceBox-fullPrice {
+  color: #82b540;
+}
+.list-group .active {
+  border: 1px solid #82b540;
+  background-color: #82b540;
+}
+.ct-list-default li:before {
+  color: #82b540;
+}
+.ct-list-hyperlink li:before {
+  color: #82b540;
+}
+.ct-list-locked li:first-child {
+  background-color: #82b540;
+}
+.ct-list-locked li a {
+  color: #82b540;
+}
+.ct-list-bordered a:hover {
+  color: #82b540;
+}
+.ct-personBox a {
+  color: #82b540;
+}
+.ct-socials--singleMember li a:hover {
+  background-color: #82b540;
+}
+.ct-progressPath .dropdown-menu .ct-progressPart--completed {
+  color: #82b540;
+}
+.ct-progressPath .dropdown-menu .ct-progressPart--completed:before {
+  border-color: #82b540;
+}
+.ct-article .ct-article-title a:hover {
+  color: #82b540;
+}
+.ct-article .ct-article-meta a:hover {
+  color: #82b540;
+}
+.ct-article .ct-article-description a {
+  color: #82b540;
+}
+blockquote {
+  border-left: 5px solid #82b540;
+}
+.ct-blog--thumbnail .media-body a {
+  color: #82b540;
+}
+.ct-twitter a {
+  color: #82b540;
+}
+.ct-twitter .tweet_text .at {
+  color: #82b540;
+}
+.ct-search-widget input:focus {
+  border: 1px solid #82b540;
+}
+.ct-input--type1:focus {
+  border: 1px solid #82b540;
+}
+/* Custom Checbox */
+.ct-checbox--custom input[type=checkbox]:checked + label:before {
+  color: #82b540;
+  background-color: #82b540;
+}
+.ct-widget-latestPosts li .widget-latest-posts-content a:hover {
+  color: #82b540;
+}
+.tagcloud a:hover {
+  background-color: #82b540;
+}
+.pagination li a:hover {
+  background-color: #82b540;
+}
+.pagination .active a {
+  background-color: #82b540;
+}
+.pagination .active a:hover {
+  background-color: #82b540;
+}
+.ct-counterBox p:before {
+  background-color: #82b540;
+}
+.ct-counterBox--withIcon .ct-counterBox-icon {
+  color: #82b540;
+}
+.ct-counterBox--withIcon:hover .ct-counterBox-icon {
+  background-color: #82b540;
+}
+.progress-bar-primary {
+  background-color: #82b540;
+}
