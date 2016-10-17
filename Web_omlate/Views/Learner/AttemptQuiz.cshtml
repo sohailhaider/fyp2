@@ -4,6 +4,55 @@
     ViewBag.Title = "AttemptQuiz";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="/omlate/Scripts/jquery-1.10.2.js"></script><!-- Nav Bar -->
+
+<script>
+    $(document).ready(function () {
+        var duration = 10000;
+        var m,s;
+        var countdown = setInterval(function () {
+            if (--duration) {
+                m = duration/60;
+                m = Math.floor(m);
+                m = m.toString();
+                if (m.length < 2) {
+                    m = "0" + m;
+                }
+                s = duration % 60;
+                s = s.toString();
+                if (s.length < 2) {
+                    s = "0" + s;
+                }
+                $("#timer").html(m+":"+s);
+            } else {
+                clearInterval(countdown);
+                $("#timer").html("00:00");
+                $("#savedata").click();
+            }
+        }, 1000);
+
+        $("#savedata").click(function (event) {
+            var str = "";
+            var lastname = "answer1";
+            var msg = "!#!#!-1";
+            $("input[type='radio']").each(function () {
+                if (this.checked) {
+                    msg = "!#!#!" + $(this).val();
+                }
+                if (this.name != lastname) {
+                    str += msg;
+                    msg = "!#!#!-1";
+                }
+                lastname = this.name;
+            });
+            str += msg;
+            if(@ViewBag.questions.Count > 0)
+                $("#Answers").val(str);
+            //event.preventDefault();
+        });
+    });
+</script>
+
 
 <div class="container ct-u-paddingBoth20">
     <div class="row">
@@ -11,13 +60,50 @@
             <div class="ct-textBox ct-textBox--thin">
                 <div class="ct-textBox--heading">
                     <h4 class="ct-fw-700 ct-u-colorMotive">
-                        Quiz Attempt
+                        Quiz Attempt <p id="timer" class="pull-right text-right">1</p>
                     </h4>
 
-                            @Html.Hidden("QuizID", (int)ViewBag.quizId)
-                            @Html.Hidden("LearnerID", (String)ViewBag.learnerId)
-                            @Html.Hidden("OfferedCourseID", (String)ViewBag.quizId)
 
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.Hidden("QuizID", (String)ViewBag.quizId)
+                            @Html.Hidden("LearnerID", (String)ViewBag.LearnerID)
+                            @Html.Hidden("OfferedCourseID", (int)ViewBag.OfferedCourseID)
+                            <input type="hidden" name="Answers" id="Answers" value=""/>
+                            @{ int i = 0;}
+                            <ol>
+                                @foreach (var item in ViewBag.questions)
+                                {
+                                    <li>
+                                        @item.QuestionStatement
+                                        @{
+                                            var arr = item.Options.Split(new String[] { "!#!#!" }, StringSplitOptions.RemoveEmptyEntries);
+                                            i++;
+                                            var j = 0;
+                                        }
+                                        <br/>
+                                        @foreach (var option in arr)
+                                        {
+                                            var str = "answer" + @i;
+                                            j++;
+                                            <input type="radio" name="@str" class="answer" value="@j"> @option
+
+                                        }
+
+                                    </li>
+                                }
+                            </ol>
+                            <div class="form-group">
+                                <div class="col-md-offset-10 col-md-2">
+                                    <input type="submit" id="savedata" value="Submit" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
 

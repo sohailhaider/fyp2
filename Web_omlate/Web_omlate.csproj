@@ -1284,6 +1284,30 @@
     <Compile Include="Migrations\201610171646371_udpatedAttemptQuiz.Designer.cs">
       <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610171942323_attemptedDetailsSaved.cs" />
+    <Compile Include="Migrations\201610171942323_attemptedDetailsSaved.Designer.cs">
+      <DependentUpon>201610171942323_attemptedDetailsSaved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610171948595_AttemptedDetailsModelAdded.cs" />
+    <Compile Include="Migrations\201610171948595_AttemptedDetailsModelAdded.Designer.cs">
+      <DependentUpon>201610171948595_AttemptedDetailsModelAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610171950575_Alternate Model for Attempts.cs" />
+    <Compile Include="Migrations\201610171950575_Alternate Model for Attempts.Designer.cs">
+      <DependentUpon>201610171950575_Alternate Model for Attempts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610171952442_const added.cs" />
+    <Compile Include="Migrations\201610171952442_const added.Designer.cs">
+      <DependentUpon>201610171952442_const added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610171954366_updatemigrationProblem.cs" />
+    <Compile Include="Migrations\201610171954366_updatemigrationProblem.Designer.cs">
+      <DependentUpon>201610171954366_updatemigrationProblem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610171957078_model dependency on attempt.cs" />
+    <Compile Include="Migrations\201610171957078_model dependency on attempt.Designer.cs">
+      <DependentUpon>201610171957078_model dependency on attempt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Assessment.cs" />
     <Compile Include="Models\AssessmentEvaluation.cs" />
@@ -1292,6 +1316,7 @@
     <Compile Include="Models\CourseCategory.cs" />
     <Compile Include="Models\CourseDetailsViewModel.cs" />
     <Compile Include="Models\EnrollCourseViewModel.cs" />
+    <Compile Include="Models\IsAttempted.cs" />
     <Compile Include="Models\LearnerEnroll.cs" />
     <Compile Include="Models\LectureResource.cs" />
     <Compile Include="Models\LectureSchedule.cs" />
@@ -1571,6 +1596,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610171646371_udpatedAttemptQuiz.resx">
       <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171942323_attemptedDetailsSaved.resx">
+      <DependentUpon>201610171942323_attemptedDetailsSaved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171948595_AttemptedDetailsModelAdded.resx">
+      <DependentUpon>201610171948595_AttemptedDetailsModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171950575_Alternate Model for Attempts.resx">
+      <DependentUpon>201610171950575_Alternate Model for Attempts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171952442_const added.resx">
+      <DependentUpon>201610171952442_const added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171954366_updatemigrationProblem.resx">
+      <DependentUpon>201610171954366_updatemigrationProblem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171957078_model dependency on attempt.resx">
+      <DependentUpon>201610171957078_model dependency on attempt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

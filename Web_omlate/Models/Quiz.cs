@@ -13,6 +13,7 @@ namespace Web_omlate.Models
         {
             Questions = new HashSet<QuizQuestion>();
             QuizAttempts = new HashSet<QuizAttempt>();
+            QuizAttemptsCount = new HashSet<IsAttempted>();
         }
 
         [Key]
@@ -44,5 +45,6 @@ namespace Web_omlate.Models
 
 
         public virtual ICollection<QuizAttempt> QuizAttempts { get; set; }
+        public virtual ICollection<IsAttempted> QuizAttemptsCount { get; set; }
     }
 }

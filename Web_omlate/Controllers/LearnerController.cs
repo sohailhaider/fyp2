@@ -309,10 +309,67 @@ namespace Web_omlate.Controllers
 
         public ActionResult AttemptQuiz()
         {
-            var quiz = Request["quizId"];
-            int qu = int.Parse(quiz);
-            int OfferedCourseID = _db.Quizs.Where(q2 => q2.QuizID == qu).Select(q=>q.offeredCourseID).FirstOrDefault();
-            return View();
+            var name = Session["username"];
+            if (name != null)
+            {
+                var quiz = Request["quizId"];
+                int qu = int.Parse(quiz);
+                Quiz quizdetails = _db.Quizs.Where(q2 => q2.QuizID == qu).FirstOrDefault();
+
+                if(_db.IsAttempteds.Where(a=>a.Username == (String)name && a.QuizID == quizdetails.QuizID).ToList().Count < 1)
+                {
+                    IsAttempted iA = new IsAttempted();
+                    iA.AttemptedTime = DateTime.Now;
+                    iA.Learner = _db.Users.Where(u => u.Username == (String)name).FirstOrDefault();
+                    iA.Quiz = quizdetails;
+                    _db.IsAttempteds.Add(iA);
+                    _db.SaveChanges();
+                } else
+                {
+                    return RedirectToAction("Index", "Default");
+                }
+
+
+                ViewBag.quizId = quiz;
+                ViewBag.OfferedCourseID = quizdetails.offeredCourseID;
+                ViewBag.LearnerID = name;
+                ViewBag.questions = quizdetails.Questions.ToList();
+                ViewBag.duration = quizdetails.Duration * 60;
+
+                return View();
+            }
+            return RedirectToAction("Index", "Default");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AttemptQuiz(QuizAttempt quizAttempt)
+        {
+            var name = Session["username"];
+            if (name != null)
+            {
+                quizAttempt.Learner = _db.Users.Where(u => u.Username == (String)name).FirstOrDefault();
+                quizAttempt.AttemptTime = DateTime.Now;
+                quizAttempt.Quiz = _db.Quizs.Where(q => q.QuizID == quizAttempt.QuizID).FirstOrDefault();
+                quizAttempt.OfferedCourse = _db.OfferedCourses.Where(o => o.OfferedCourseID == quizAttempt.OfferedCourseID).FirstOrDefault();
+                var arr = quizAttempt.Answers.Split(new String[] { "!#!#!" }, StringSplitOptions.RemoveEmptyEntries);
+                var questions = quizAttempt.Quiz.Questions.ToList();
+                var i = 0;
+                quizAttempt.Marks = 0;
+                foreach(var q in questions)
+                {
+                    if (q.Answer == arr[i])
+                    {
+                        quizAttempt.Marks++;
+                    }
+                        i++;
+                }
+
+                _db.QuizAttempts.Add(quizAttempt);
+                _db.SaveChanges();
+                return View();
+            }
+            return RedirectToAction("Index", "Default");
         }
     }
 }

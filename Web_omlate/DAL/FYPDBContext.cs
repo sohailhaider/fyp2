@@ -37,5 +37,7 @@ namespace Web_omlate.DAL
         public System.Data.Entity.DbSet<Web_omlate.Models.QuizQuestion> QuizQuestions { get; set; }
 
         public System.Data.Entity.DbSet<Web_omlate.Models.QuizAttempt> QuizAttempts { get; set; }
+
+        public System.Data.Entity.DbSet<Web_omlate.Models.IsAttempted> IsAttempteds { get; set; }
     }
 }
