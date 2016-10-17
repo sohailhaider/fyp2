@@ -309,6 +309,9 @@ namespace Web_omlate.Controllers
 
         public ActionResult AttemptQuiz()
         {
+            var quiz = Request["quizId"];
+            int qu = int.Parse(quiz);
+            int OfferedCourseID = _db.Quizs.Where(q2 => q2.QuizID == qu).Select(q=>q.offeredCourseID).FirstOrDefault();
             return View();
         }
     }

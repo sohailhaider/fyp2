@@ -1280,6 +1280,10 @@
     <Compile Include="Migrations\201610171559270_required fields udpation in Attempt Quiz.Designer.cs">
       <DependentUpon>201610171559270_required fields udpation in Attempt Quiz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610171646371_udpatedAttemptQuiz.cs" />
+    <Compile Include="Migrations\201610171646371_udpatedAttemptQuiz.Designer.cs">
+      <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Assessment.cs" />
     <Compile Include="Models\AssessmentEvaluation.cs" />
@@ -1564,6 +1568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610171559270_required fields udpation in Attempt Quiz.resx">
       <DependentUpon>201610171559270_required fields udpation in Attempt Quiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610171646371_udpatedAttemptQuiz.resx">
+      <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

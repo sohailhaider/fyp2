@@ -28,7 +28,7 @@ namespace Web_omlate.Models
         public DateTime AttemptTime { get; set; }
 
         [Display(Name = "Learner")]
-        public int LearnerID { get; set; }
+        public String LearnerID { get; set; }
 
         [Required]
         [Display(Name = "Offered Course")]

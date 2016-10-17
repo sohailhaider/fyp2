@@ -150,3 +150,4 @@ F:\FYP 2\OmLATE_12F8098_12F-8097_Code-Submission\Omlate-Website\Web_omlate\obj\R
 F:\FYP 2\OmLATE_12F8098_12F-8097_Code-Submission\Omlate-Website\Web_omlate\obj\Release\Web_omlate.Migrations.udpated.resources
 F:\FYP 2\OmLATE_12F8098_12F-8097_Code-Submission\Omlate-Website\Web_omlate\obj\Release\Web_omlate.Migrations.AttempQuizmodeladded.resources
 F:\FYP 2\OmLATE_12F8098_12F-8097_Code-Submission\Omlate-Website\Web_omlate\obj\Release\Web_omlate.Migrations.requiredfieldsudpationinAttemptQuiz.resources
+F:\FYP 2\OmLATE_12F8098_12F-8097_Code-Submission\Omlate-Website\Web_omlate\obj\Release\Web_omlate.Migrations.udpatedAttemptQuiz.resources
