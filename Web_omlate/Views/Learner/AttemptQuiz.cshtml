@@ -8,7 +8,7 @@
 
 <script>
     $(document).ready(function () {
-        var duration = 10000;
+        var duration = @ViewBag.duration;
         var m,s;
         var countdown = setInterval(function () {
             if (--duration) {
@@ -73,7 +73,7 @@
                             @Html.Hidden("QuizID", (String)ViewBag.quizId)
                             @Html.Hidden("LearnerID", (String)ViewBag.LearnerID)
                             @Html.Hidden("OfferedCourseID", (int)ViewBag.OfferedCourseID)
-                            <input type="hidden" name="Answers" id="Answers" value=""/>
+                            <input type="hidden" name="Answers" id="Answers" value="-1"/>
                             @{ int i = 0;}
                             <ol>
                                 @foreach (var item in ViewBag.questions)

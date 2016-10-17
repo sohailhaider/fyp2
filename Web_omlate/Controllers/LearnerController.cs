@@ -326,7 +326,9 @@ namespace Web_omlate.Controllers
                     _db.SaveChanges();
                 } else
                 {
-                    return RedirectToAction("Index", "Default");
+                    TempData["msg"] = "You have Attempted this Quiz Already!";
+                    var offeredCourseId = quizdetails.offeredCourseID;
+                    return RedirectToAction("ViewDetails", "Learner", new { offeredCourseId });
                 }
 
 
@@ -367,7 +369,9 @@ namespace Web_omlate.Controllers
 
                 _db.QuizAttempts.Add(quizAttempt);
                 _db.SaveChanges();
-                return View();
+                var offeredCourseId = quizAttempt.OfferedCourseID;
+                TempData["msg"] = "Quiz Submitted Successfully";
+                return RedirectToAction("ViewDetails", "Learner", new { offeredCourseId });
             }
             return RedirectToAction("Index", "Default");
         }
