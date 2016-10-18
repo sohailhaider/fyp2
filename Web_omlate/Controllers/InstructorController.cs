@@ -564,6 +564,17 @@ namespace Web_omlate.Controllers
             }).ToList();
             return Json(quizs, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult validateUsernamePassword()
+        {
+            var username = Request["username"];
+
+            var password = CalculateMD5Hash((String)Request["password"]);
+            var u2 = _db.Users.Where(u => u.Username == username && u.Password == password && u.Type == "instructor").FirstOrDefault();
+            if(u2!=null)
+                return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }
