@@ -540,6 +540,30 @@ namespace Web_omlate.Controllers
             }
             return View();
         }
+        public JsonResult MyCourses()
+        {
+            var instructorID = Request["instructorID"];
+            var course = _db.OfferedCourses.Where(c => c.OfferdBy.Username == instructorID.ToString() && c.FinishDate >= DateTime.Now).Select(x => new
+            {
+                CourseCode = x.Course.CourseCode,
+                CourseTitle = x.Course.CourseTitle,
+                OfferedCourseID = x.OfferedCourseID
+            }).ToList();
+            return Json(course, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getQuizsbyOfferedCourseID()
+        {
+            var OfferedCourseID = Request["OfferedCourseID"];
+            int qu = int.Parse(OfferedCourseID);
+            var quizs = _db.Quizs.Where(q => q.offeredCourseID == qu & q.Deadline > DateTime.Now).Select(s => new
+            {
+                quizId = s.QuizID,
+                quizTitle = s.QuizTitle,
+                quizDuration = s.Duration
+            }).ToList();
+            return Json(quizs, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }
