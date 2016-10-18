@@ -172,26 +172,19 @@ namespace Web_omlate.Controllers
                 var exists = db.Users.Where(u => u.Email.Equals(model.Email, StringComparison.CurrentCultureIgnoreCase) && u.Password == pass).FirstOrDefault();
                 if (exists != null)
                 {
+                    Session["username"] = exists.Username;
+                    Session["usertype"] = exists.Type;
+                    Session["email"] = exists.Email;
+                    Session.Timeout = 30;
+                    ViewBag.msg = "Welcome";
                     if (exists.Type == "instructor")
                     {
                         TempData["success_msg"] = "Welcome Back Instructor: " + exists.FirstName + " " + exists.LastName;
-
-                        Session["username"] = exists.Username;
-                        Session["usertype"] = exists.Type;
-                        Session["email"] = exists.Email;
-                        Session.Timeout = 30;
-                        ViewBag.msg = "Welcome";
                         return RedirectToAction("Index", "Instructor");
                     }
                     else if (exists.Type == "learner")
                     {
                         TempData["success_msg"] = "Welcome Back Learner: " + exists.FirstName + " " + exists.LastName;
-
-                        Session["username"] = exists.Username;
-                        Session["usertype"] = exists.Type;
-                        Session["email"] = exists.Email;
-                        Session.Timeout = 30;
-                        ViewBag.msg = "Welcome";
                         return RedirectToAction("Index", "Learner");
                     }
 

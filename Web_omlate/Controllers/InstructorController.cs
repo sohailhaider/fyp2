@@ -439,7 +439,7 @@ namespace Web_omlate.Controllers
                     Value = x.OfferedCourseID.ToString(),
                     Text = (x.Course.CourseCode + " - " + x.Course.CourseTitle)
                 }).ToList();
-                var u = _db.Users.Where(x => x.Type == "instructor").Select(y => y.Username).FirstOrDefault();
+                var u = _db.Users.Where(x => x.Type == "instructor" && x.Username == (String)name).Select(y => y.Username).FirstOrDefault();
                 ViewBag.instructor = u;
                 return View();
             }
@@ -458,7 +458,8 @@ namespace Web_omlate.Controllers
                     Text = (x.Course.CourseCode + " - " + x.Course.CourseTitle)
                 }).ToList();
 
-                ViewBag.instructor = _db.Users.Where(x => x.Type == "instructor").Select(y => y.Username).FirstOrDefault();
+                ViewBag.instructor = _db.Users.Where(x => x.Type == "instructor" && x.Username == (String)name).Select(y => y.Username).FirstOrDefault();
+                
                 _db.Quizs.Add(quiz);
                 _db.SaveChanges();
                 int quizId = _db.Quizs.Max(item => item.QuizID);
@@ -538,7 +539,7 @@ namespace Web_omlate.Controllers
                 //ViewBag.title = ;
                 return View();
             }
-            return View();
+            return RedirectToAction("Index", "Default");
         }
         public JsonResult MyCourses()
         {
