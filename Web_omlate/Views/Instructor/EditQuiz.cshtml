@@ -54,7 +54,52 @@
                                     </div>
                             }
                     </div>
-
+                <div>
+                   
+                    @if (ViewBag.attempts.Count != 0)
+                    {
+                        <br />
+                        <br />
+                        <br />
+                        <h4>Submissions</h4>
+                        <hr />
+                        var i = 1;
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("S.No")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Username")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Attempt Time")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Marks")
+                                </th>
+                            </tr>
+                            @foreach (var item in ViewBag.attempts)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayName(i.ToString())
+                                    </td>
+                                    <td>
+                                        @item.LearnerID
+                                    </td>
+                                    <td>
+                                        @item.AttemptTime
+                                    </td>
+                                    <td>
+                                        @item.Marks
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    
+                </div>
             </div>
         </div>
     </div>

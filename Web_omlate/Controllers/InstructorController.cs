@@ -476,6 +476,7 @@ namespace Web_omlate.Controllers
                 int quizId = int.Parse(Request["quizId"]);
                 ViewBag.quizId = quizId;
                 ViewBag.questions = _db.Quizs.Where(quiz => quiz.QuizID == quizId).Select(w => w.Questions).FirstOrDefault();
+                ViewBag.attempts = _db.Quizs.Where(quiz => quiz.QuizID == quizId).Select(w => w.QuizAttempts).FirstOrDefault();
                 return View();
             }
             return RedirectToAction("Index", "Default");
