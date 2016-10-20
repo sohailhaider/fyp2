@@ -5,13 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
-<style>
-    
-    .close {
-        
-    padding: 36px 49px;
-    }
-</style>
 <div class="container ct-u-paddingBoth100">
     <div class="row">
         <div class="col-md-12">
@@ -24,20 +17,21 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="ct-textBox"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                                <div class="ct-textBox"><button style="display:none;" type="button" id="modelbutton" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Show Quiz</button>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal"
+   data-backdrop="static" 
+   data-keyboard="false" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Quiz</h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <iframe src="" width="100%" id="quizIframe" height="490"></iframe> 
             </div>
             <div class="modal-footer">
             </div>
@@ -45,7 +39,7 @@
 
     </div>
 </div>
-                                    <iframe src="http://localhost:5080/omlate/play/" width="600" height="490"></iframe>
+                                    <iframe src="http://localhost:5080/omlate/play/" width="600" height="490" id="videoFrame"></iframe>
                                     <!--
                                                         Player Here
                                                         <embed type="application/x-shockwave-flash" src="~/player/player.swf?v1.3.5" width="595" id="f" name="f" height="480" flashvars="skin=mySkin.swf&thumbnail=null&stream=rtmp://192.168.43.206/omlate&streamname=class1&live=1&subscribe=1&autoplay=1" allowScriptAccess="always" allowfullscreen="true" bgcolor="#000000" />
@@ -86,11 +80,32 @@
                                             $(function () {
                                                 // Reference the auto-generated proxy for the hub.
                                                 var chat = $.connection.chatHub;
+                                                var lst = false;
+                                                var v;
                                                 // Create a function that the hub can call back to display messages.
                                                 chat.client.addNewMessageToPage = function (name, message) {
                                                     // Add the message to the page.
-                                                    $('#discussion').append('<li><strong>' + htmlEncode(name)
-                                                        + '</strong>: ' + htmlEncode(message) + '</li>');
+                                                    if (lst == true) {
+                                                        $('#modelbutton').click();
+                                                        $('#videoFrame').hide();
+                                                        $("#quizIframe").attr('src', "./AttemptQuiz?quizId=" + message);
+                                                        window.onbeforeunload = function () {
+                                                            return 'Are you sure you want to leave?';
+                                                        };
+                                                        lst = false;
+                                                        return;
+                                                    }
+                                                    if (message == "-####!###!!!") {
+                                                        lst = true;
+                                                    } else {
+                                                        $('#discussion').append('<li><strong>' + htmlEncode(name)
+                                                            + '</strong>: ' + htmlEncode(message) + '</li>');                                                        
+                                                    }
+                                                    //if (message.match("")) {
+                                                        //if ($("#quizIframe").length) {
+                                                    //    
+                                                    //    return false;
+                                                    //}
                                                 };
                                                 // Set initial focus to message input box.
                                                 $('#message').focus();
@@ -103,11 +118,20 @@
                                                 $.connection.hub.start().done(function () {
                                                     $('#sendmessage').click(function () {
                                                         // Call the Send method on the hub.
+                                                        if ($('#message').val() == "-####!###!!!") {
+                                                            alert("Phrase \"-####!###!!!\" is not allowed in chat!");
+                                                            $('#message').val('').focus();
+                                                            return;
+                                                        }
                                                         chat.server.send($('#group').val(), $('#displayname').val(), $('#message').val());
+                                                        
                                                         // Clear text box and reset focus for next comment.
                                                         $('#message').val('').focus();
                                                     });
                                                 });
+
+                                                
+
                                             });
 
                                             // This optional function html-encodes messages for display in the page.

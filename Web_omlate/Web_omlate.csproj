@@ -1552,6 +1552,7 @@
     <Content Include="Views\Instructor\AddQuestionToQuiz.cshtml" />
     <Content Include="Views\Instructor\ViewQuiz.cshtml" />
     <Content Include="Views\Learner\AttemptQuiz.cshtml" />
+    <Content Include="Views\Shared\_Plain.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

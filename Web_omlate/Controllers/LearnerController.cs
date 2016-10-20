@@ -12,6 +12,7 @@ namespace Web_omlate.Controllers
     public class LearnerController : Controller
     {
         private FYPDBContext _db = new FYPDBContext();
+        string username;
         // GET: Learner
         public ActionResult Index()
         {
@@ -109,6 +110,7 @@ namespace Web_omlate.Controllers
 
         public ActionResult ViewDetails(int offeredCourseId)
         {
+            username = (String)Session["username"];
             var course = _db.LectureSchedules.Where(s => s.OfferedCourseID == offeredCourseId).Select(w => new
             {
                 w.OfferedCourse.Course,
@@ -117,7 +119,22 @@ namespace Web_omlate.Controllers
                 w.OfferedCourse.Assessments
             }).FirstOrDefault();
             var quizs = _db.Quizs.Where(q => q.offeredCourseID == offeredCourseId).ToList();
+            List<double> marks = new List<double>();
+            QuizAttempt attempt;
+            foreach (var q in quizs )
+            {
+                attempt = _db.QuizAttempts.Where(at => at.LearnerID == username && at.QuizID == q.QuizID).FirstOrDefault();
+                if (attempt == null)
+                    marks.Add(-10000);
+                else 
+                    marks.Add(attempt.Marks);
+                attempt = null;
+            }
+            //q2.QuizAttempts.Where(qs => qs.LearnerID == (String)username).FirstOrDefault();
+            
             ViewBag.quizs = quizs;
+            ViewBag.marks = marks;
+            ViewBag.username = username;
             if (course != null)
             {
                 return View(new CourseDetailsViewModel

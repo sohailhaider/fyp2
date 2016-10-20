@@ -11,7 +11,7 @@
         <div class="col-md-12">
             @if (msg != null)
             {
-                <h5 style="color:red">@msg</h5>
+                <h5 style="color:red" id="error">@msg</h5>
             }
             <div class="ct-textBox ct-textBox--thin">
                
@@ -201,6 +201,9 @@
                         <th>
                             @Html.DisplayName("Deadline")
                         </th>
+                        <th>
+                            @Html.DisplayName("Marks")
+                        </th>
                         <th></th>
                     </tr>
 
@@ -212,6 +215,7 @@
                             </td>
                             <td>
                                 <a href="~/Learner/AttemptQuiz?quizId=@item.QuizID">@item.QuizTitle</a>
+                                @*@item.QuizTitle*@
                             </td>
                             <td>
                                 @item.Duration mints
@@ -222,6 +226,17 @@
                                 }
                                 @v
                             </td>
+                            <td>
+                                @{ 
+                                    var index = i - 1;
+                                    var res = ViewBag.marks[index];
+                                    if(res == -10000)
+                                    {
+                                        res = "Quiz Not Attempted";
+                                    }
+                                }
+                                @res
+                            </td>
                         </tr>
                                         i++;
                                     }
@@ -231,3 +246,19 @@
         </div>
     </div>
 </div>
+@section scripts {
+<script>
+    $(function () {
+        if ($("#error:contains('Already')").length) {
+            window.top.$('#modelbutton').click();
+            window.top.$('#videoFrame').show();
+            alert("You have Attempted this Quiz Already!");
+        }
+        if ($("#error:contains('Successfully')").length) {
+            window.top.$('#modelbutton').click();
+            window.top.$('#videoFrame').show();
+            alert("Your Quiz has been submitted!");
+        }
+    });
+</script>
+}

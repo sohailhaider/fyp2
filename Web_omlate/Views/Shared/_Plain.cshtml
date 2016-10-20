@@ -1,0 +1,26 @@
+﻿
+
+    @System.Web.Optimization.Styles.Render("~/bundles/css")
+    @System.Web.Optimization.Scripts.Render("~/bundles/js")
+<body class="cssAnimate ct-headroom--scrollUpMenu">
+    <div class="ct-preloader"><div class="ct-preloader-content"></div></div>
+
+    <!--Mobile Nav-->
+    @*Html.Partial("~/Views/Default/_DefaultMobileNav.cshtml")
+    *@
+    <div id="ct-js-wrapper" class="ct-pageWrapper">
+
+
+        @RenderBody();
+
+    </div>
+    <!-- JavaScripts -->
+    @System.Web.Optimization.Scripts.Render("~/bundles/js")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+    @System.Web.Optimization.Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
