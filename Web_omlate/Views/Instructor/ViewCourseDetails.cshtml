@@ -15,7 +15,6 @@
                 <div class="form-horizontal">
 
                     <div style="color: red">@ViewBag.msg</div>
-                    <hr />
                     <div class="form-group">
                         @Html.Label("Course Code", htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.LabelForModel(Model.Course.CourseCode, htmlAttributes: new { @class = "control-label" })
@@ -61,52 +60,64 @@
             <div class="col-md-12">
                 <div class="ct-textBox ct-textBox--thin">
                     <div class="ct-textBox--heading">
-                        <h4 class="ct-fw-700 ct-u-colorMotive">Course Resources Info</h4>
+                        <h4 class="ct-fw-700 ct-u-colorMotive">Course Resources Info
+                            
+                        </h4>
                     </div>
                     @{ var i = 1;}
-                    <table class="table">
-                        <tr>
-                            <th>
-                                @Html.DisplayName("S.No")
-                            </th>
-                            <th>
-                                @Html.DisplayName("File Name")
-                            </th>
-                            <th>
-                                @Html.DisplayName("File Type")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Upload Date")
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    @if(Model.LectureResources.Count == 0)
+                    {
+                        <div class="container"><h4 class="ct-u-colorBlackLight ct-u-marginBoth20">No Record Found!</h4></div>
+                    } else
+                    {
 
-                        @foreach (var item in Model.LectureResources)
-                        {
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayName(i.ToString())
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FileName)
-                                </td>
                                 <th>
-                                    @Html.DisplayName(item.ResourceType)
+                                    @Html.DisplayName("S.No")
                                 </th>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateTime)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("View", "DownloadFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Delete", "DeleteFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
-                                </td>
+                                <th>
+                                    @Html.DisplayName("File Name")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("File Type")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Upload Date")
+                                </th>
+                                <th colspan="2">@Html.DisplayName("Actions")</th>
                             </tr>
-                            i++;
-                        }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.LectureResources)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayName(i.ToString())
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileName)
+                                    </td>
+                                    <th>
+                                        @Html.DisplayName(item.ResourceType)
+                                    </th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateTime)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("View", "DownloadFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "DeleteFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
                     </table>
+
+                    }
                 </div>
 
             </div>
@@ -121,34 +132,43 @@
             <div class="col-md-12">
                 <div class="ct-textBox ct-textBox--thin">
                     <div class="ct-textBox--heading">
-                        <h4 class="ct-fw-700 ct-u-colorMotive">Course Assessments Info</h4>
+                        <h4 class="ct-fw-700 ct-u-colorMotive">Course Assessments Info
+                            <button class="pull-right text-right btn btn-sm btn-primary" style="padding-top:0px">
+                            @Html.ActionLink("Add Assessment", "UploadAssessment", new { courseId = Model.OfferedCourse.OfferedCourseID }, new { style = "color:#ffffff; font-size: 15px;" })
+                            </button>
+                        </h4>
+
                     </div>
 
-                    @Html.ActionLink("Add New Assessment", "UploadAssessment", new { courseId = Model.OfferedCourse.OfferedCourseID }, new { @class = "btn btn-default" })
-
                     @{ i = 1;}
-                    <table class="table">
-                        <tr>
-                            <th>
-                                @Html.DisplayName("S.No")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Assessment Title")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Uploaded On")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Due Date")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Points")
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-
+                    @if (Model.Assessments.Count == 0)
+                    {
+                        <div class="container"><h4 class="ct-u-colorBlackLight ct-u-marginBoth20">No Record Found!</h4></div>
+                    }
+                    else
+                    {
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("S.No")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Assessment Title")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Uploaded On")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Due Date")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Points")
+                                </th>
+                                <th colspan="3">@Html.DisplayName("Actions")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         @foreach (var item in Model.Assessments)
                         {
                             <tr>
@@ -179,7 +199,9 @@
                             </tr>
                             i++;
                         }
+                       </tbody>
                     </table>
+                    }
                 </div>
 
             </div>

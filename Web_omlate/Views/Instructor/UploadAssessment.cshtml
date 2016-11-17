@@ -13,14 +13,13 @@
                 <div class="ct-textBox--heading">
                     <h4 class="ct-fw-700 ct-u-colorMotive">Upload Assessment</h4>
                 </div>
-
+                <br/>
                 @using (Html.BeginForm("UploadAssessment", "Instructor", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
                         <div style="color: red"> @ViewBag.msg</div>
-                        <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
@@ -65,7 +64,7 @@
                         @Html.Hidden("courseId", (int)ViewBag.courseId)
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8">
-                                <input type="submit" value="Upload" class="btn btn-default" />
+                                <input type="submit" value="Upload" class="btn btn-primary pull-right" />
                             </div>
                         </div>
                     </div>

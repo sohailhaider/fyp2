@@ -1,7 +1,7 @@
 ﻿@model Web_omlate.Models.OfferedCourse
 
 @{
-    ViewBag.Title = "OfferACourse";
+    ViewBag.Title = "Offer New Course";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
@@ -10,14 +10,13 @@
         <div class="col-md-12">
             <div class="ct-textBox ct-textBox--thin">
                 <div class="ct-textBox--heading">
-                    <h4 class="ct-fw-700 ct-u-colorMotive">Offer A Course</h4>
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Offer New Course</h4>
                 </div>
-                @using (Html.BeginForm("OfferACourse", "Instructor", FormMethod.Post))
+                @using (Html.BeginForm("Offer New Course", "Instructor", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                        <hr />
                         <div style="color: red"> @ViewBag.msg</div>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <br />
@@ -73,7 +72,7 @@
                         <br />
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8">
-                                <input type="submit" value="Offer a course" class="btn btn-default" />
+                                <input type="submit" value="Offer Now" class="btn btn-primaryDark pull-right" />
                             </div>
                         </div>
                     </div>

@@ -40,7 +40,7 @@
 </script>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 ct-u-marginBoth20">
             <div class="ct-textBox ct-textBox--thin">
                 <div class="ct-textBox--heading">
                     <h4 class="ct-fw-700 ct-u-colorMotive">Create Quiz</h4>
@@ -72,7 +72,7 @@
                                         <input id="option1" type="text" class="form-control options" placeholder="Option 1" required/>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="button" value="Add More" id="addmore" class="btn btn-default" style="font-size: 15px; padding: 0px 20px; text-decoration:underline" />
+                                        <input type="button" value="Add More" id="addmore" class="btn btn-primary" style="font-size: 15px; padding: 0px 20px;" />
                                     </div>
                                 </div>
                                 <div id="morefields">
@@ -93,7 +93,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8">
-                                <input type="submit" value="Create" class="btn btn-default" id="createbutton" />
+                                <input type="submit" value="Create" class="btn btn-primary pull-right" id="createbutton" />
                             </div>
                         </div>
                     </div>
@@ -101,8 +101,5 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>

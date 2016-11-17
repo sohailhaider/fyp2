@@ -16,7 +16,7 @@
         <div class="ct-u-displayTableVertical text-capitalize">
             <div class="ct-u-displayTableCell">
                 <span class="ct-u-textBig">
-                    @Html.DisplayName("Hi!  " + Model.FirstName + " " + Model.LastName)
+                    @Html.DisplayName("Hi! " + Model.FirstName + " " + Model.LastName)
 
                 </span>
             </div>
@@ -24,7 +24,7 @@
     </div>
 </div>
 <section class="ct-u-backgroundLightGreen">
-    <div class="ct-personBox ct-personBox--inline ct-personBox--inlineDescription">
+    @*<div class="ct-personBox ct-personBox--inline ct-personBox--inlineDescription">
         <div class="container">
             <div class="ct-personMedia ct-u-displayTableVertical">
                 <div class="ct-u-displayTableCell">
@@ -45,21 +45,20 @@
                         <p class="ct-fw-300">
                             Instructor Introduction..........
                         </p>
-                        <a class="btn btn-default" href="@Url.Action("EditInfo", "Instructor", new {username = Model.Username})">Edit Your Info</a>
+                        <a class="btn btn-primary" href="@Url.Action("EditInfo", "Instructor", new {username = Model.Username})">Edit Your Info</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div style="color: red"> @ViewBag.msg</div>
-    <hr />
-    <div class="container ct-u-paddingBoth100">
+    <div class="container ct-u-marginBoth20">
         <div class="row">
             <div class="col-md-12">
                 <div class="ct-textBox ct-textBox--thin">
                     <div class="ct-textBox--heading">
-                        <h4 class="ct-fw-700 ct-u-colorMotive">My Offered Courses</h4>
+                        <h4 class="ct-fw-700 ct-u-colorMotive">Your Offered Courses</h4>
                         <div class="ct-textBox--withNumber">
                             <span class="ct-fw-700">@courses.Count</span>
                         </div>
@@ -75,16 +74,19 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="ct-u-displayTableCell">
+                                <div class="ct-u-displayTableCell" style="width: 100%">
                                     <div class="ct-productDescription">
                                         <a href="@Url.Action("ViewCourseDetails", new { offeredCourseId = item.OfferedCourseID })"><h5 class="ct-fw-600 ct-u-marginBottom10">@(item.Course.CourseCode + " - " + item.Course.CourseTitle)</h5></a>
-                                        <span>                                            Course Starting Date: @item.StartingDate  - - -  Course Ending Date: @item.FinishDate <br>
+                                        <span style="font-style: normal">                                            
+                                            <label>Course Starting Date:</label> @item.StartingDate
+                                            <br/>
+                                            <label>Course Ending Date:</label> @item.FinishDate <br>
                                         </span>
                                     </div>
                                     <div class="ct-productMeta">
                                         <div class="ct-u-displayTableVertical">
                                             <div class="ct-u-displayTableCell">
-                                                <div class="starrr" data-rating='4'></div>
+                                                <div class="starrr" data-rating="4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-star-o fa"></i></div>
                                             </div>
                                             <div class="ct-u-displayTableCell">
                                                 @item.CreditHours

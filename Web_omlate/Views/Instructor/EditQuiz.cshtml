@@ -5,14 +5,16 @@
 }
 
 @Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
-<div class="container ct-u-paddingBoth100">
+<div class="container ct-u-marginBoth20">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="ct-textBox ct-textBox--thin">
                 <div class="ct-textBox--heading">
-                    <h4 class="ct-fw-700 ct-u-colorMotive">Edit Quiz<p class="pull-right text-right btn btn-default" style="font-size:15px;text-decoration:underline">
-    @Html.ActionLink("Add Question", "AddQuestionToQuiz", "Instructor", new { ViewBag.quizId }, null)
-</p></h4>
+                    <h4 class="ct-fw-700 ct-u-colorMotive">Edit Quiz
+                        <button class="pull-right text-right btn btn-sm btn-primary" style="padding-top:0px">
+                            @Html.ActionLink("Add Question", "AddQuestionToQuiz", "Instructor", new { ViewBag.quizId }, new { style = "color:#ffffff; font-size: 15px;" })
+                        </button>
+                    </h4>
                     
                 </div>
                     <div class="panel-group" id="accordion">
@@ -54,54 +56,56 @@
                                     </div>
                             }
                     </div>
-                <div>
-                   
+                
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+            <div class="ct-textBox ct-textBox--thin">
+                <div class="ct-textBox--heading"><h4 class="ct-fw-700 ct-u-colorMotive">Submissions</h4></div>
                     @if (ViewBag.attempts.Count != 0)
                     {
-                        <br />
-                        <br />
-                        <br />
-                        <h4>Submissions</h4>
-                        <hr />
+                    
                         var i = 1;
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>
-                                    @Html.DisplayName("S.No")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Username")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Attempt Time")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Marks")
-                                </th>
-                            </tr>
-                            @foreach (var item in ViewBag.attempts)
-                            {
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayName(i.ToString())
-                                    </td>
-                                    <td>
-                                        @item.LearnerID
-                                    </td>
-                                    <td>
-                                        @item.AttemptTime
-                                    </td>
-                                    <td>
-                                        @item.Marks
-                                    </td>
+                                    <th>
+                                        @Html.DisplayName("S.No")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Username")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Attempt Time")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Marks")
+                                    </th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.attempts)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayName(i.ToString())
+                                        </td>
+                                        <td>
+                                            @item.LearnerID
+                                        </td>
+                                        <td>
+                                            @item.AttemptTime
+                                        </td>
+                                        <td>
+                                            @item.Marks
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     }
-                    
-                </div>
             </div>
         </div>
     </div>
 </div>
-

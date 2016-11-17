@@ -22,7 +22,7 @@
     @System.Web.Optimization.Scripts.Render("~/bundles/js")
 
 </head>
-<body class="cssAnimate ct-headroom--scrollUpMenu">
+<body class="cssAnimate ct-headroom--scrollUpMenu ct-u-backgroundGradient">
     <div class="ct-preloader"><div class="ct-preloader-content"></div></div>
 
     <!--Mobile Nav-->
@@ -43,13 +43,15 @@
 
         <!-- Header -->
         @Html.Partial("_Header")
-        
-        @RenderBody();
 
-        <footer>
-            @Html.Partial("_Footer")
-        </footer>
-    </div>
+        <section class="ct-u-paddingBoth10 ct-u-doubleBorder ct-u-backgroundLightGreen">
+            @RenderBody();
+
+        </section>
+            <footer>
+                @Html.Partial("_Footer")
+            </footer>
+</div>
     <!-- JavaScripts -->
     @System.Web.Optimization.Scripts.Render("~/bundles/js")
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
