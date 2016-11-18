@@ -1339,7 +1339,6 @@
     </Content>
     <Content Include="Content\images\content\.gitkeep" />
     <Content Include="Content\images\content\desktop.ini" />
-    <Content Include="Content\images\desktop.ini" />
     <Content Include="Content\images\flags\desktop.ini" />
     <Content Include="Content\images\flags\gif\desktop.ini" />
     <Content Include="Content\images\flags\png\desktop.ini" />
