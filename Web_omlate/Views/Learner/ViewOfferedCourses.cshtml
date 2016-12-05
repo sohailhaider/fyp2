@@ -1,23 +1,21 @@
 ﻿@model IEnumerable<Web_omlate.Models.OfferedCoursesViewModel>
 @using Web_omlate.Models
 @{
-    ViewBag.Title = "ViewOfferedCourses";
+    ViewBag.Title = "Offered Courses";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
 
-<section class="ct-u-paddingBoth100 ct-u-doubleBorder ct-u-backgroundLightGreen">
+<section class="ct-u-backgroundLightGreen">
     <div class="container">
-        <div class="ct-u-marginBottom40">
-        </div>
-        <div class="ct-u-marginBottom40">
+        <div class="ct-u-marginBoth20">
             <div class="ct-heading--withButton">
-                <h3 class="ct-fw-700 pull-left">Offered Courses</h3>
+                <h3 class="ct-fw-700 pull-left">Available Courses</h3>
                 
                 <div class="clearfix"></div>
             </div>
-            <div class="ct-divider ct-u-marginTop100 ct-u-marginBottom50">
-                <div class="ct-divider ct-u-marginTop100 ct-u-marginBottom50"></div>
+            <div class="ct-divider">
+                <div class="ct-divider ct-u-marginBoth20"></div>
                     <div class="row">
                         @foreach (var item in Model)
                         {
@@ -25,7 +23,7 @@
                             <div class="ct-productBox ct-u-marginBottom30">
                                 <a href="@Url.Action("ViewCourseDetails", "Learner", new { offeredCourseId=@item.OfferedCourseID })">
                                     <div class="ct-productImage">
-                                        <img src="~/Content/images/content/productBox-21.jpg" alt="Product">
+                                        <img src="~/Content/images/content/product-inline1.jpg" alt="Product">
                                     </div>
                                     <div class="ct-productDescription">
                                         <h5 class="ct-fw-600 ct-u-marginBottom10">@(item.Course.CourseCode.ToString()+" - "+ item.Course.CourseTitle.ToString() + "")</h5>

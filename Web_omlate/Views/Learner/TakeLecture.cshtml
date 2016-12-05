@@ -1,11 +1,11 @@
 ﻿@model Web_omlate.Models.LectureSchedule
 
 @{
-    ViewBag.Title = "TakeLecture";
+    ViewBag.Title = "Take a Lecture";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
-<div class="container ct-u-paddingBoth100">
+<div class="container ct-u-marginBoth20">
     <div class="row">
         <div class="col-md-12">
             <div class="ct-textBox ct-textBox--thin">
@@ -13,11 +13,11 @@
                     <h4 class="ct-fw-700 ct-u-colorMotive">Live Lecture</h4>
                 </div>
 
-                <section class="ct-u-paddingBoth100 ct-u-doubleBorder ct-u-backgroundLightGreen">
+                <section class="ct-u-paddingBoth50 ct-u-doubleBorder ct-u-backgroundLightGreen">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-8">
-                                <div class="ct-textBox"><button style="display:none;" type="button" id="modelbutton" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Show Quiz</button>
+                            <div class="col-md-7">
+                                <button style="display:none;" type="button" id="modelbutton" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Show Quiz</button>
 
 <!-- Modal -->
 <div id="myModal"
@@ -39,7 +39,7 @@
 
     </div>
 </div>
-                                    <iframe src="http://localhost:5080/omlate/play/" width="600" height="490" id="videoFrame"></iframe>
+                                    <iframe src="http://localhost:5080/omlate/play/" width="100%" style="width:100%" height="490" id="videoFrame"></iframe>
                                     <!--
                                                         Player Here
                                                         <embed type="application/x-shockwave-flash" src="~/player/player.swf?v1.3.5" width="595" id="f" name="f" height="480" flashvars="skin=mySkin.swf&thumbnail=null&stream=rtmp://192.168.43.206/omlate&streamname=class1&live=1&subscribe=1&autoplay=1" allowScriptAccess="always" allowfullscreen="true" bgcolor="#000000" />
@@ -49,20 +49,22 @@
                                                             <a href="http://gokercebeci.com/dev/f4player" title="flv player">flv player</a>
                                                         </noembed>
                                     -->
-                                </div>
                             </div>
                             <div class="hidden-lg hidden-md ct-u-marginBottom30"></div>
-                            <div class="col-md-4">
-                                <div class="ct-fw-600">
-                                    Chat
-                                    <div class="container">
-                                        <input type="hidden" id="displayname" value="@Session["userName"]" />
-                                        <input type="hidden" id="group" value="class1" />
-                                        <!--<input type="hidden" id="group" value="Model.OfferedCourse.Course.CourseCode" /> -->
-                                        <input type="text" id="message" />
-                                        <input type="button" id="sendmessage" value="Send" />
-
-                                        <ul id="discussion"></ul>
+                            <div class="col-md-4 pull-right" style="margin-right:40px">
+                                <div class="ct-textBox">
+                                    <div class="ct-fw-500">
+                                       <div class="ct-textBox--heading">
+                                           <div class="form-group row">
+                                               <input type="hidden" id="displayname" value="@Session["userName"]" />
+                                               <input type="hidden" id="group" value="class1" />
+                                               <!--<input type="hidden" id="group" value="Model.OfferedCourse.Course.CourseCode" /> -->
+                                               <input type="text" id="message" placeholder="Chat Message" class="form-control col-xs-6 col-xs-6 col-xs-6 col-xs-6"/>
+                                               <p class="danger" id="errormessage" style="color: red; font-size:13px; display:none">* Type any message</p>
+                                               <input type="button" id="sendmessage" class="col-md-3 btn btn-sm btn-primary pull-right" style="margin-top:10px;" value="Send" />
+                                           </div>
+                                       </div>
+                                        <br/><ul id="discussion"></ul>
                                     </div>
                                 </div>
                                 <div>
@@ -78,6 +80,14 @@
                                         <!--SignalR script to update the chat page and send messages.-->
                                         <script>
                                             $(function () {
+                                                $("#message").keydown(function () {
+                                                    $("#errormessage").hide();
+                                                });
+                                                $('#message').keypress(function (e) {
+                                                    if (e.which == 13) {
+                                                        $('#sendmessage').click();
+                                                    }
+                                                });
                                                 // Reference the auto-generated proxy for the hub.
                                                 var chat = $.connection.chatHub;
                                                 var lst = false;
@@ -85,6 +95,11 @@
                                                 // Create a function that the hub can call back to display messages.
                                                 chat.client.addNewMessageToPage = function (name, message) {
                                                     // Add the message to the page.
+                                                    if (message == "") {
+                                                        $("#errormessage").show();
+                                                        return;
+                                                    }
+
                                                     if (lst == true) {
                                                         $('#modelbutton').click();
                                                         $('#videoFrame').hide();

@@ -1,12 +1,12 @@
 ﻿@model Web_omlate.Models.CourseDetailsViewModel
 @{
-    ViewBag.Title = "ViewCourseDetails";
+    ViewBag.Title = "Course Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var msg = TempData["msg"];
 }
 @Html.Partial("~/Views/Learner/_LearnerNav.cshtml")
 
-<div class="container ct-u-paddingBoth20">
+<div class="container ct-u-marginBoth20">
     <div class="row">
         <div class="col-md-12">
             @if (msg != null)
@@ -21,7 +21,6 @@
                 <div class="form-horizontal">
 
                     <div style="color: red">@ViewBag.msg</div>
-                    <hr />
                     <div class="form-group">
                         @Html.Label("Course Code", htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.LabelForModel(Model.Course.CourseCode, htmlAttributes: new { @class = "control-label" })
@@ -61,60 +60,79 @@
     </div>
 </div>
 <div>
+
     <div class="container ct-u-paddingBoth20">
         <div class="row">
             <div class="col-md-12">
                 <div class="ct-textBox ct-textBox--thin">
                     <div class="ct-textBox--heading">
-                        <h4 class="ct-fw-700 ct-u-colorMotive">Course Resources Info</h4>
+                        <h4 class="ct-fw-700 ct-u-colorMotive">
+                            Course Resources Info
+
+                        </h4>
                     </div>
                     @{ var i = 1;}
-                    <table class="table">
-                        <tr>
-                            <th>
-                                @Html.DisplayName("S.No")
-                            </th>
-                            <th>
-                                @Html.DisplayName("File Name")
-                            </th>
-                            <th>
-                                @Html.DisplayName("File Type")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Upload Date")
-                            </th>
-                            <th></th>
-                        </tr>
+                    @if (Model.LectureResources.Count == 0)
+                    {
+                        <div class="container"><h4 class="ct-u-colorBlackLight ct-u-marginBoth20">No Record Found!</h4></div>
+                    }
+                    else
+                    {
 
-                        @foreach (var item in Model.LectureResources)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayName(i.ToString())
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FileName)
-                                </td>
-                                <td>
-                                    @Html.DisplayName(item.ResourceType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateTime)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("View", "DownloadFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
-                                </td>
-                            </tr>
-                            i++;
-                        }
-                    </table>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayName("S.No")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("File Name")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("File Type")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Upload Date")
+                                    </th>
+                                    <th colspan="2">@Html.DisplayName("Actions")</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.LectureResources)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayName(i.ToString())
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FileName)
+                                        </td>
+                                        <th>
+                                            @Html.DisplayName(item.ResourceType)
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateTime)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("View", "DownloadFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "DeleteFile", new { id = item.LectureResourceID, lectureid = item.LectureScheduleID })
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            </tbody>
+                        </table>
+
+                    }
                 </div>
+
             </div>
         </div>
-    </div>
-</div>
+    </div></div>
 <div>
-    <div class="container ct-u-paddingBoth20">
+    <div class="container ct-u-marginBoth20">
         <div class="row">
             <div class="col-md-12">
                 <div class="ct-textBox ct-textBox--thin">
@@ -122,26 +140,27 @@
                         <h4 class="ct-fw-700 ct-u-colorMotive">Course Assessments Info</h4>
                     </div>
                     @{ i = 1;}
-                    <table class="table">
-                        <tr>
-                            <th>
-                                @Html.DisplayName("S.No")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Assessment Title")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Uploaded On")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Due Date")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Points")
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <table class="table table-striped table-bordered table-hover">
+                       <thead>
+                           <tr>
+                               <th>
+                                   @Html.DisplayName("S.No")
+                               </th>
+                               <th>
+                                   @Html.DisplayName("Assessment Title")
+                               </th>
+                               <th>
+                                   @Html.DisplayName("Uploaded On")
+                               </th>
+                               <th>
+                                   @Html.DisplayName("Due Date")
+                               </th>
+                               <th>
+                                   @Html.DisplayName("Points")
+                               </th>
+                               <th colspan="2"></th>
+                           </tr>
+                       </thead>
 
                         @foreach (var item in Model.Assessments)
                         {
@@ -187,25 +206,25 @@
                     </h4>
                 </div>
                 @{ i = 1;}
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayName("S.No")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Quiz Title")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Duration")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Deadline")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Marks")
-                        </th>
-                        <th></th>
-                    </tr>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("S.No")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Quiz Title")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Duration")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Deadline")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Marks")
+                            </th>
+                        </tr></thead>
 
                     @foreach (var item in ViewBag.quizs)
                     {

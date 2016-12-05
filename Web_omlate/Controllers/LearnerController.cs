@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using Web_omlate.DAL;
 using Web_omlate.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Web_omlate.Controllers
 {
@@ -220,16 +222,29 @@ namespace Web_omlate.Controllers
             var name = Session["username"];
             if (name != null)
             {
+                var pass = CalculateMD5Hash(model.Password);
                 var user = _db.Users.Where(x => x.Username == model.Username).FirstOrDefault();
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Field = model.Field;
-                user.Password = model.Password;
+                user.Password = pass;
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Learner");
             }
             //write something in temp message "please login first."
             return RedirectToAction("Index", "Default");
+        }
+        public string CalculateMD5Hash(string input)
+        {
+            MD5 m = MD5.Create();
+            byte[] inBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = m.ComputeHash(inBytes);
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                builder.Append(hashBytes[i].ToString("X2"));
+            }
+            return builder.ToString();
         }
 
         public ActionResult ScheduledLectures()
@@ -248,6 +263,7 @@ namespace Web_omlate.Controllers
                 }
                 var learner=_db.LearnerEnrollments.Where(s=>s.EnrolledLearner.Username==name.ToString()).FirstOrDefault();
                 var hisSches = schedules.Where(s => s.OfferedCourse.CoursesEnrolled.Contains(learner));
+                var b = hisSches;
                 return View(hisSches);
             }
             return RedirectToAction("Index", "Default");

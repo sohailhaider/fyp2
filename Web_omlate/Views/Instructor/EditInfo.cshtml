@@ -1,14 +1,14 @@
 ﻿@model Web_omlate.Models.User
 
 @{
-    ViewBag.Title = "EditInfo";
+    ViewBag.Title = "Edit Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
 <br />
 
-<div class="container ct-u-paddingBoth100">
+<div class="container ct-u-marginBoth20">
     <div class="row">
         <div class="col-md-12">
             <div class="ct-textBox ct-textBox--thin">
@@ -22,7 +22,7 @@
 
                     <div class="form-horizontal">
                         <div style="color: red"> @ViewBag.msg</div>
-                        <hr />
+                        <br />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Username)
 
@@ -69,8 +69,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8">
-                                <input type="submit" value="Update" class="btn btn-primary" />
-                                <a class="btn btn-primary" href="@Url.Action("Index", "Instructor")">Back to Home</a>
+                                <input type="submit" value="Update" class="btn btn-primary pull-right" />
                             </div>
                         </div>
                     </div>

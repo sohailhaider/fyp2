@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Web_omlate.Models.LectureResource>
 
 @{
-    ViewBag.Title = "ViewResources";
+    ViewBag.Title = "View Resources";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("~/Views/Instructor/_InstructorNav.cshtml")
@@ -10,32 +10,32 @@
         <div class="col-md-12">
             <div class="ct-textBox ct-textBox--thin">
                 <div class="ct-textBox--heading">
-                    <h4 class="ct-fw-700 ct-u-colorMotive">View Resources</h4>
+                    <h4 class="ct-fw-700 ct-u-colorMotive">View Resources
+                        <button class="pull-right text-right btn btn-sm btn-primary" style="padding-top:0px">
+                            @Html.ActionLink("Add New Resource", "UploadResource", new { lectureid = (Int32)ViewBag.LectureScheduleID }, new { style = "color:#ffffff; font-size: 15px;" })
+                        </button></h4>
                 </div>
 
                 <div style="color: red"> @ViewBag.msg</div>
-                <hr>
-
-                <p>
-                    @Html.ActionLink("Add New Resource", "UploadResource", new { lectureid = (Int32)ViewBag.LectureScheduleID })
-                </p>
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayName("S.No")
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FileName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ResourceType)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DateTime)
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("S.No")
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FileName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ResourceType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateTime)
+                            </th>
+                            <th colspan="2">Options</th>
+                        </tr>
+                    </thead>
                     @{var i = 1;}
                     @foreach (var item in Model)
                     {

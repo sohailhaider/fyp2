@@ -17,7 +17,7 @@
             <div class="ct-u-displayTableCell">
                 <span class="ct-u-textBig">
                     @Html.DisplayName("Hi! " + Model.FirstName + " " + Model.LastName)
-
+                    <a class="btn btn-primary pull-right" id="editInfoButton" href="@Url.Action("EditInfo", "Learner", new { username=Model.Username })">Edit Your Info</a>
                 </span>
             </div>
         </div>
@@ -70,7 +70,7 @@
                                 <div class="ct-u-displayTableCell">
                                     <div class="ct-productImage">
                                         <a href="@Url.Action("ViewCourseDetails", new { offeredCourseId = item.OfferedCourseID })">
-                                            <img src="~/assets/images/content/product-inline1.jpg" alt="Product">
+                                            <img src="~/Content/images/content/product-inline1.jpg" alt="Product">
                                         </a>
                                     </div>
                                 </div>
