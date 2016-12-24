@@ -86,7 +86,12 @@ namespace Web_omlate.Controllers
                         Course = x.Course
                     }
                  ).ToList();
-
+                List<LearnerEnroll> enrolls = _db.LearnerEnrollments.Where(s => s.EnrolledLearnerID == username.ToString()).ToList();
+                foreach(LearnerEnroll enroll in enrolls)
+                {
+                    int courseId = _db.OfferedCourses.Where(s => s.OfferedCourseID == enroll.EnrolledCourseID).Select(x => x.OfferedCourseID).FirstOrDefault();
+                    courses.Remove(courses.Where(s=>s.OfferedCourseID == courseId).FirstOrDefault());
+                }
                 return View(courses);
             }
             TempData["error_message"] = "Please Login or SignUp";
@@ -95,6 +100,7 @@ namespace Web_omlate.Controllers
 
         public ActionResult ViewCourseDetails(int offeredCourseId)
         {
+            username = (String)Session["username"];
             var courseDetails = _db.OfferedCourses.Where(x => x.OfferedCourseID == offeredCourseId).
                 Select(y => new
                 EnrollCourseViewModel
@@ -107,6 +113,11 @@ namespace Web_omlate.Controllers
                     CourseTitle = y.Course.CourseTitle,
                     CategoryName = y.Course.CourseCategory.CategoryName
                 }).FirstOrDefault();
+            var enroll = _db.LearnerEnrollments.Where(s => s.EnrolledLearnerID == username && s.EnrolledCourseID == offeredCourseId).FirstOrDefault();
+            if(enroll!=null)
+            {
+                return RedirectToAction("ViewDetails", "Learner", new { offeredCourseId = offeredCourseId });
+            }
             return View(courseDetails);
         }
 
@@ -261,10 +272,14 @@ namespace Web_omlate.Controllers
                 {
                     schedules.Remove(item);
                 }
-                var learner=_db.LearnerEnrollments.Where(s=>s.EnrolledLearner.Username==name.ToString()).FirstOrDefault();
-                var hisSches = schedules.Where(s => s.OfferedCourse.CoursesEnrolled.Contains(learner));
-                var b = hisSches;
-                return View(hisSches);
+                var learnerEnrolls = _db.LearnerEnrollments.Where(s=>s.EnrolledLearner.Username==name.ToString()).ToList();
+                List<LectureSchedule> lectures = new List<LectureSchedule>();
+                foreach(LearnerEnroll learnerEnroll in learnerEnrolls)
+                {
+                    lectures.AddRange(schedules.Where(s => s.OfferedCourse.CoursesEnrolled.Contains(learnerEnroll)).ToList());
+                    
+                }
+                return View(lectures);
             }
             return RedirectToAction("Index", "Default");
         }

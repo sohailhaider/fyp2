@@ -18,7 +18,9 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <button style="display:none;" type="button" id="modelbutton" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Show Quiz</button>
-
+                                @{ 
+                                    string id = Model.OfferedCourseID.ToString();
+                                }
 <!-- Modal -->
 <div id="myModal"
    data-backdrop="static" 
@@ -39,17 +41,16 @@
 
     </div>
 </div>
-                                    <iframe src="http://localhost:5080/omlate/play/" width="100%" style="width:100%" height="490" id="videoFrame"></iframe>
-                                    <!--
-                                                        Player Here
-                                                        <embed type="application/x-shockwave-flash" src="~/player/player.swf?v1.3.5" width="595" id="f" name="f" height="480" flashvars="skin=mySkin.swf&thumbnail=null&stream=rtmp://192.168.43.206/omlate&streamname=class1&live=1&subscribe=1&autoplay=1" allowScriptAccess="always" allowfullscreen="true" bgcolor="#000000" />
-                                                        <noembed>
-                                                            You need Adobe Flash Player to watch this video. <br>
-                                                            <a href="http://get.adobe.com/flashplayer/">Download it from Adobe.</a>
-                                                            <a href="http://gokercebeci.com/dev/f4player" title="flv player">flv player</a>
-                                                        </noembed>
-                                    -->
-                            </div>
+                                    @*<iframe src="http://localhost:5080/omlate/play/" width="100%" style="width:100%" height="490" id="videoFrame"></iframe>*@
+                                 
+                                <embed type="application/x-shockwave-flash" src="~/player/player.swf?v1.3.5" width="100%" style="width:100%"" height="490" id="f" name="f"  flashvars="skin=/omlate/player/skins/mySkin.swf&thumbnail=null&stream=rtmp://localhost/omlate&streamname=@id&live=1&subscribe=1&autoplay=1" allowScriptAccess="always" allowfullscreen="true" bgcolor="#000000" />
+                                <noembed>
+                                    You need Adobe Flash Player to watch this video. <br>
+                                    <a href="http://get.adobe.com/flashplayer/">Download it from Adobe.</a>
+                                    <a href="http://gokercebeci.com/dev/f4player" title="flv player">flv player</a>
+                                </noembed>
+            
+</div>
                             <div class="hidden-lg hidden-md ct-u-marginBottom30"></div>
                             <div class="col-md-4 pull-right" style="margin-right:40px">
                                 <div class="ct-textBox">
@@ -57,7 +58,7 @@
                                        <div class="ct-textBox--heading">
                                            <div class="form-group row">
                                                <input type="hidden" id="displayname" value="@Session["userName"]" />
-                                               <input type="hidden" id="group" value="class1" />
+                                               <input type="hidden" id="group" value="@id" />
                                                <!--<input type="hidden" id="group" value="Model.OfferedCourse.Course.CourseCode" /> -->
                                                <input type="text" id="message" placeholder="Chat Message" class="form-control col-xs-6 col-xs-6 col-xs-6 col-xs-6"/>
                                                <p class="danger" id="errormessage" style="color: red; font-size:13px; display:none">* Type any message</p>

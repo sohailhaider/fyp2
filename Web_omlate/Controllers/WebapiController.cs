@@ -11,15 +11,53 @@ using System.Text;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using Web_omlate.DAO;
+using Web_omlate.ApiModels;
+using System.Security.Cryptography;
 
 namespace Web_omlate.Controllers
 {
-    public class WebapiController : ApiController
+    public class WebapiController : Controller
     {
-        FYPDBContext _db;
-        public WebapiController()
+        FYPDBContext _db = new FYPDBContext();
+        
+        public JsonResult Login(UserLoginModel loginCredentials)
         {
-            _db = new FYPDBContext();
+            var pass = CalculateMD5Hash(loginCredentials.Password);
+            var user =
+                   _db.Users.Where(
+                       s =>
+                           s.Email.Equals(loginCredentials.Email, StringComparison.CurrentCultureIgnoreCase) && s.Password == pass &&
+                           s.Type.ToLower() == "learner").Select(s => new
+                           {
+                               FirstName = s.FirstName,
+                               LastName = s.LastName,
+                               Field = s.Field,
+                               Email = s.Email,
+                               PhoneNo = s.PhoneNo,
+                               Type = s.Type
+                           }).FirstOrDefault();
+            if(user == null)
+            {
+                return Json(new ApiResponse
+                {
+                    Message = "Invalid Username/Password!",
+                    Status = false,
+                }, JsonRequestBehavior.AllowGet);
+
+            }
+            return Json(new ApiResponse
+            {
+                Message = "Successfull Login!",
+                Status = true,
+                Data = user
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetActiveCoursesByInstructor(String instructorId)
+        {
+            var list = _db.OfferedCourses.Where(s => s.OfferedByID == instructorId && s.FinishDate >= DateTime.Now && s.StartingDate <= DateTime.Now).Select(s=>new { s.OfferedCourseID, s.Course.CourseTitle, s.Course.CourseCode}).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         //public Object StartSession(session s)
@@ -98,6 +136,18 @@ namespace Web_omlate.Controllers
         //{
         //    return new { userid = "asds" };
         //}
+        public string CalculateMD5Hash(string input)
+        {
+            MD5 m = MD5.Create();
+            byte[] inBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = m.ComputeHash(inBytes);
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                builder.Append(hashBytes[i].ToString("X2"));
+            }
+            return builder.ToString();
+        }
 
     }
 }

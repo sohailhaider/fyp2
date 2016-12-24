@@ -11,6 +11,7 @@ namespace Web_omlate.Models
         [Key]
         public int ID { get; set; }
         [Display(Name="Email")]
+        [DataType(DataType.EmailAddress)]
         [Required]
         public String Email { get; set; }
 

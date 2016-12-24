@@ -1212,11 +1212,13 @@
     <Content Include="Scripts\starr\starrr.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\Learner\mySkin.swf" />
+    <Content Include="Views\Learner\player.swf" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\ApiResponse.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

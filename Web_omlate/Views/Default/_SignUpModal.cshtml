@@ -82,16 +82,17 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="col-md-6">
-                                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control ct-input--type1 input-hg", @placeholder = "Full Name"}})
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "First Name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
 
                             </div>
                             <div class="col-md-6">
-                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Full Name" } })
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Last Name" } })
                                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 
                             </div>
-                            <br>
+                        </div>
+                        <div class="row">
                             <br>
                             <div class="col-md-6">
                                 @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Username" } })
@@ -102,10 +103,9 @@
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Password", @type = "password" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
-                            <br>
-                            <br>
                         </div>
                         <div class="row">
+                            <br>
                             <div class="col-md-6">
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Email", @type = "email" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -114,12 +114,11 @@
                                 @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control ct-input--type1 input-hg", @placeholder = "Phone Number" } })
                                 @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
                             </div>
-                            <br>
-                            <br>
                         </div>
                         <div class="row">
+                            <br/>
                             <div class="col-md-4">
-                                <label style="font-size: 30px; margin-top: 10px; margin-left:25px;">Educational Field </label>
+                                <label style="font-size: 20px; margin-top: 20px; margin-left:25px;">Educational Field </label>
                             </div>
                             <div class="col-md-8">
                                 @Html.DropDownListFor(model => model.Field, educationalFiels, new { @class = "form-control ct-input--type1 input-hg ct-u-marginBottom50" })
@@ -127,7 +126,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label style="font-size: 30px; margin-top: 10px; margin-left:25px;">Sign up as </label>
+                                <label style="font-size: 20px; margin-top: 20px; margin-left:25px;">Sign up as </label>
                             </div>
                             <div class="col-md-8">
                                 @Html.DropDownListFor(model => model.Type, userTypes, new { @class = "form-control ct-input--type1 input-hg ct-u-marginBottom50" })

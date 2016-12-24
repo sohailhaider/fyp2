@@ -9666,7 +9666,7 @@ blockquote .ct-blockquote-author {
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #cbd2e0;
-  color: #b3bdd0;
+  /*color: #b3bdd0;*/
   font-style: italic;
   font-weight: 300;
   box-shadow: none;
