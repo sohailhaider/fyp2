@@ -214,7 +214,7 @@ namespace Web_omlate.Controllers
             if (name != null)
             {
                 var dt = DateTime.Now.Date;
-                var schedules = _db.LectureSchedules.Where(x => x.OfferedCourse.OfferdBy.Username == name.ToString() && x.LectureDate >= dt).ToList();
+                var schedules = _db.LectureSchedules.Where(x => x.OfferedCourse.OfferdBy.Username == name.ToString() && x.LectureDate >= dt).OrderByDescending(s=>  new { s.LectureDate, s.LectureTime}).ToList();
                 var toDel = schedules.Where(s => s.LectureDate == dt && s.LectureTime < DateTime.Now.TimeOfDay).ToList();
                 foreach (var item in toDel)
                 {
@@ -299,7 +299,7 @@ namespace Web_omlate.Controllers
             var file = _db.LectureResources.Where(s => s.LectureResourceID == id).Select(d => new { Name = d.FileName, file = d.FilePath, Type = d.ResourceType }).FirstOrDefault();
             if (file != null)
             {
-                return File(file.file, file.Type,file.Name);
+                return File(file.file, file.Type);
             }
             return RedirectToAction("ViewResources", new { lectureId = lectureid });
         }
@@ -394,7 +394,7 @@ namespace Web_omlate.Controllers
             var file = _db.Assessments.Where(s => s.AssessmentID == id).Select(d => new { Name = d.AssessmentTitle, file = d.FilePath, Type = d.FileType }).FirstOrDefault();
             if (file != null)
             {
-                return File(file.file, file.Type, file.Name);
+                return File(file.file, file.Type);
             }
             return RedirectToAction("ViewCourseDetails", new { offeredCourseId = courseid });
         }
@@ -426,7 +426,7 @@ namespace Web_omlate.Controllers
         public ActionResult DownloadSubmission(int id)
         {
             var file = _db.AssessmentSubmissions.Where(s => s.Id == id).Select(s => new { Name = s.Assessment.AssessmentTitle, File = s.FilePath, Type = s.FileType }).FirstOrDefault();
-            return File(file.File, file.Type, file.Name);
+            return File(file.File, file.Type);
         }
 
         public ActionResult CreateQuiz()

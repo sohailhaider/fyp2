@@ -172,7 +172,7 @@ namespace Web_omlate.Controllers
             var file = _db.LectureResources.Where(s => s.LectureResourceID == id).Select(d => new { Name = d.FileName, file = d.FilePath, Type = d.ResourceType }).FirstOrDefault();
             if (file != null)
             {
-                return File(file.file, file.Type,file.Name);
+                return File(file.file, file.Type);
             }
             return RedirectToAction("ViewResources", new { lectureId = lectureid });
         }
@@ -187,8 +187,9 @@ namespace Web_omlate.Controllers
                 var id = model.OfferedCourseID;
                 var course = _db.OfferedCourses.Where(x => x.OfferedCourseID == id).FirstOrDefault();
                 var learner = _db.Users.Where(x => x.Username == name.ToString()).FirstOrDefault();
-                var ax = course.CoursesEnrolled.Contains(_db.LearnerEnrollments.Where(s => s.EnrolledLearner.Username == name.ToString()).FirstOrDefault());
-                if (ax != null)
+                //var ax = course.CoursesEnrolled.Contains(_db.LearnerEnrollments.Where(s => s.EnrolledLearner.Username == name.ToString()).FirstOrDefault());
+                var ax = _db.LearnerEnrollments.Where(s => s.EnrolledLearner.Username == name.ToString() && s.EnrolledCourseID == id).FirstOrDefault();
+                if (ax ==null)
                 {
                     course.LearnerCount = course.LearnerCount + 1;
                     _db.LearnerEnrollments.Add(new LearnerEnroll
@@ -265,9 +266,13 @@ namespace Web_omlate.Controllers
             {
                 var date = DateTime.Now.Date;
                 var time = DateTime.Now.TimeOfDay;
-                var schedules = _db.LectureSchedules.Where(s=>s.LectureDate>=date).ToList();
+                var schedules = _db.LectureSchedules.Where(s=>s.LectureDate>=date).OrderBy(s=>new
+                {
+                    s.LectureDate,
+                    s.LectureTime
+                }).ToList();
 
-                var toDel = schedules.Where(s=>s.LectureTime<time).ToList();
+                var toDel = schedules.Where(s=> s.LectureDate == date && s.LectureTime<time).ToList();
                 foreach (var item in toDel)
                 {
                     schedules.Remove(item);
@@ -304,7 +309,7 @@ namespace Web_omlate.Controllers
             var file = _db.Assessments.Where(s => s.AssessmentID == id).Select(d => new { Name = d.AssessmentTitle, file = d.FilePath, Type = d.FileType }).FirstOrDefault();
             if (file != null)
             {
-                return File(file.file, file.Type,file.Name);
+                return File(file.file, file.Type);
             }
             return RedirectToAction("ViewCourseDetails", new { offeredCourseId = courseid });
         }
@@ -332,6 +337,7 @@ namespace Web_omlate.Controllers
             {
                 var name = Session["username"];
                 var learner = _db.LearnerEnrollments.Where(d => d.EnrolledLearner.Username == name.ToString()).FirstOrDefault();
+                var user = _db.Users.Where(s => s.Username == name.ToString()).FirstOrDefault();
                 if (learner != null)
                 {
                     var f = new BinaryReader(File.InputStream);
@@ -346,6 +352,7 @@ namespace Web_omlate.Controllers
                         AssessmentId = AssessmentID,
                         FilePath = path,
                         LearnerId = learner.LearnerEnrollID,
+                        Learner = user,
                         SubmissionTime = DateTime.Now,
                         FileType = File.ContentType
                     });

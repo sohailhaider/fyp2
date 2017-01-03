@@ -41,7 +41,7 @@ namespace Web_omlate.Models
         public String Note { get; set; }
 
         public virtual OfferedCourse OfferedCourse { get; set; }
-        public ICollection<AssessmentSubmission> AssessmentSubmissions { get; set; }
+        public virtual ICollection<AssessmentSubmission> AssessmentSubmissions { get; set; }
 
     }
 }

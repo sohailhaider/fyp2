@@ -184,7 +184,24 @@
                                     @Html.ActionLink("Download", "DownloadAssessment", new { id = item.AssessmentID, courseid = item.OfferedCourse.OfferedCourseID })
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Submit Assessment", "SubmitAssessment", new { id = item.AssessmentID, courseid = item.OfferedCourse.OfferedCourseID })
+                                    @{
+                                        Web_omlate.Models.AssessmentSubmission Submission;
+                                        if (item.AssessmentSubmissions !=null) {
+                                            Submission = item.AssessmentSubmissions.Where(s => s.Learner.Username == Session["username"].ToString()).FirstOrDefault();
+                                        } else
+                                        {
+                                            Submission = null;
+                                        }
+
+                                    }
+                                    @if (Submission == null)
+                                    {
+                                        @Html.ActionLink("Submit Assessment", "SubmitAssessment", new { id = item.AssessmentID, courseid = item.OfferedCourse.OfferedCourseID })
+                                    } else
+                                    {
+                                        <p>Submitted</p>
+                                    }
+
                                 </td>
                             </tr>
                             i++;

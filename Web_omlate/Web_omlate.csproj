@@ -263,6 +263,7 @@
     <Content Include="assets\images\content\header12.jpg" />
     <Content Include="assets\images\content\header13.jpg" />
     <Content Include="assets\images\content\header14.jpg" />
+    <Content Include="assets\images\content\header14a.jpg" />
     <Content Include="assets\images\content\header2.jpg" />
     <Content Include="assets\images\content\header3-person.png" />
     <Content Include="assets\images\content\header3.jpg" />
@@ -1056,6 +1057,8 @@
     <Content Include="player\source\f4\PlayerInterface.as" />
     <Content Include="player\source\f4\PlayerNetStream.as" />
     <None Include="Properties\PublishProfiles\file system.pubxml" />
+    <None Include="Properties\PublishProfiles\omlate - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\omlate - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1219,6 +1222,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModels\ApiResponse.cs" />
+    <Compile Include="ApiModels\EnrollCourseInAPI.cs" />
+    <Compile Include="ApiModels\OfferedCourseViewModelInAPI.cs" />
+    <Compile Include="ApiModels\QuizAttemptInModel.cs" />
+    <Compile Include="ApiModels\QuizGetViewModel.cs" />
+    <Compile Include="ApiModels\SimplifiedQuizQuestion.cs" />
+    <Compile Include="ApiModels\StudenLectureDetailsModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -1234,81 +1243,6 @@
     <Compile Include="DAO\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601030946156_initial.cs" />
-    <Compile Include="Migrations\201601031505508_jan13.cs" />
-    <Compile Include="Migrations\201601031654402_jan1-3-v2.cs" />
-    <Compile Include="Migrations\201601040520338_AddedScheduleIdInSeesion.cs" />
-    <Compile Include="Migrations\201601041419370_inSession-Updated.cs" />
-    <Compile Include="Migrations\201601041444519_SessionClientIp-Removed.cs" />
-    <Compile Include="Migrations\201601041548503_updatedDb.cs" />
-    <Compile Include="Migrations\201601041713531_sessionCast.cs" />
-    <Compile Include="Migrations\201601041822029_sessionMultiCastPid.cs" />
-    <Compile Include="Migrations\201601041912076_test.cs" />
-    <Compile Include="Migrations\201601041950197_sessionTimeNullable.cs" />
-    <Compile Include="Migrations\201601050728042_extraMig.cs" />
-    <Compile Include="Migrations\201601051003317_extraData-revert.cs" />
-    <Compile Include="Migrations\201606121445009_updated.cs" />
-    <Compile Include="Migrations\201610160800527_3825_QuizDbUpdate.cs" />
-    <Compile Include="Migrations\201610161306024_int in questionid.cs" />
-    <Compile Include="Migrations\201610161306024_int in questionid.Designer.cs">
-      <DependentUpon>201610161306024_int in questionid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610170903415_quizquestionNull.cs" />
-    <Compile Include="Migrations\201610170903415_quizquestionNull.Designer.cs">
-      <DependentUpon>201610170903415_quizquestionNull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171000151_make allow null in id.cs" />
-    <Compile Include="Migrations\201610171000151_make allow null in id.Designer.cs">
-      <DependentUpon>201610171000151_make allow null in id.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171004492_temp.cs" />
-    <Compile Include="Migrations\201610171004492_temp.Designer.cs">
-      <DependentUpon>201610171004492_temp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171010347_QuizQuestionIDremoved.cs" />
-    <Compile Include="Migrations\201610171010347_QuizQuestionIDremoved.Designer.cs">
-      <DependentUpon>201610171010347_QuizQuestionIDremoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171113207_udpated.cs" />
-    <Compile Include="Migrations\201610171113207_udpated.Designer.cs">
-      <DependentUpon>201610171113207_udpated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171545598_Attemp Quiz model added.cs" />
-    <Compile Include="Migrations\201610171545598_Attemp Quiz model added.Designer.cs">
-      <DependentUpon>201610171545598_Attemp Quiz model added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171559270_required fields udpation in Attempt Quiz.cs" />
-    <Compile Include="Migrations\201610171559270_required fields udpation in Attempt Quiz.Designer.cs">
-      <DependentUpon>201610171559270_required fields udpation in Attempt Quiz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171646371_udpatedAttemptQuiz.cs" />
-    <Compile Include="Migrations\201610171646371_udpatedAttemptQuiz.Designer.cs">
-      <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171942323_attemptedDetailsSaved.cs" />
-    <Compile Include="Migrations\201610171942323_attemptedDetailsSaved.Designer.cs">
-      <DependentUpon>201610171942323_attemptedDetailsSaved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171948595_AttemptedDetailsModelAdded.cs" />
-    <Compile Include="Migrations\201610171948595_AttemptedDetailsModelAdded.Designer.cs">
-      <DependentUpon>201610171948595_AttemptedDetailsModelAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171950575_Alternate Model for Attempts.cs" />
-    <Compile Include="Migrations\201610171950575_Alternate Model for Attempts.Designer.cs">
-      <DependentUpon>201610171950575_Alternate Model for Attempts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171952442_const added.cs" />
-    <Compile Include="Migrations\201610171952442_const added.Designer.cs">
-      <DependentUpon>201610171952442_const added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171954366_updatemigrationProblem.cs" />
-    <Compile Include="Migrations\201610171954366_updatemigrationProblem.Designer.cs">
-      <DependentUpon>201610171954366_updatemigrationProblem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610171957078_model dependency on attempt.cs" />
-    <Compile Include="Migrations\201610171957078_model dependency on attempt.Designer.cs">
-      <DependentUpon>201610171957078_model dependency on attempt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Assessment.cs" />
@@ -1519,53 +1453,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610161306024_int in questionid.resx">
-      <DependentUpon>201610161306024_int in questionid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610170903415_quizquestionNull.resx">
-      <DependentUpon>201610170903415_quizquestionNull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171000151_make allow null in id.resx">
-      <DependentUpon>201610171000151_make allow null in id.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171004492_temp.resx">
-      <DependentUpon>201610171004492_temp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171010347_QuizQuestionIDremoved.resx">
-      <DependentUpon>201610171010347_QuizQuestionIDremoved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171113207_udpated.resx">
-      <DependentUpon>201610171113207_udpated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171545598_Attemp Quiz model added.resx">
-      <DependentUpon>201610171545598_Attemp Quiz model added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171559270_required fields udpation in Attempt Quiz.resx">
-      <DependentUpon>201610171559270_required fields udpation in Attempt Quiz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171646371_udpatedAttemptQuiz.resx">
-      <DependentUpon>201610171646371_udpatedAttemptQuiz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171942323_attemptedDetailsSaved.resx">
-      <DependentUpon>201610171942323_attemptedDetailsSaved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171948595_AttemptedDetailsModelAdded.resx">
-      <DependentUpon>201610171948595_AttemptedDetailsModelAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171950575_Alternate Model for Attempts.resx">
-      <DependentUpon>201610171950575_Alternate Model for Attempts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171952442_const added.resx">
-      <DependentUpon>201610171952442_const added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171954366_updatemigrationProblem.resx">
-      <DependentUpon>201610171954366_updatemigrationProblem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610171957078_model dependency on attempt.resx">
-      <DependentUpon>201610171957078_model dependency on attempt.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

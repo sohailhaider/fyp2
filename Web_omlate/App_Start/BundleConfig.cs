@@ -21,6 +21,8 @@ namespace Web_omlate
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                "~/Scripts/jquery.browser.min.js",
+                "~/Scripts/jquery-1.10.2.js",
                 "~/Scripts/main-compiled.js",
                 "~/Scripts/main.js"));
 

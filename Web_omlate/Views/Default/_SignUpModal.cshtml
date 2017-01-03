@@ -129,12 +129,12 @@
                                 <label style="font-size: 20px; margin-top: 20px; margin-left:25px;">Sign up as </label>
                             </div>
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.Type, userTypes, new { @class = "form-control ct-input--type1 input-hg ct-u-marginBottom50" })
+                                @Html.DropDownListFor(model => model.Type, userTypes, new { @class = "form-control ct-input--type1 input-hg " })
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg text-uppercase"><span>Sign Up</span></button>
-                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg text-uppercase"><span>Sign Up</span></button>
                     </div>
                 }
             </div>

@@ -19,8 +19,10 @@ namespace Web_omlate.Models
         public string FilePath { get; set; }
         [DataType(DataType.DateTime)]
         public String  FileType { get; set; }
-
+        
         public DateTime SubmissionTime { get; set; }
         public Assessment Assessment { get; set; }
+
+        public virtual User Learner { get; set; }
     }
 }
