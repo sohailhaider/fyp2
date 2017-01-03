@@ -78,7 +78,7 @@ namespace Web_omlate.Controllers
             var username = Session["username"];
             if (username != null)
             {
-                List<OfferedCoursesViewModel> courses = _db.OfferedCourses.Where(s=>s.FinishDate <=DateTime.Now).Select(x =>
+                List<OfferedCoursesViewModel> courses = _db.OfferedCourses.Where(s=>s.FinishDate >=DateTime.Now).Select(x =>
                     new OfferedCoursesViewModel
                     {
                         OfferedCourseID = x.OfferedCourseID,
