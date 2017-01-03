@@ -146,7 +146,7 @@ namespace Web_omlate.Controllers
 
         public JsonResult getAllCoursesWithLearnerId(string Username)
         {
-            List<OfferedCourseViewModelInAPI> courses = _db.OfferedCourses.Select(x =>
+            List<OfferedCourseViewModelInAPI> courses = _db.OfferedCourses.Where(s=>s.FinishDate >= DateTime.Now).Select(x =>
                     new OfferedCourseViewModelInAPI
                     {
                         OfferedCourseID = x.OfferedCourseID,

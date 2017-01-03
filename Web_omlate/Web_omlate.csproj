@@ -1252,6 +1252,7 @@
     <Compile Include="Models\CourseCategory.cs" />
     <Compile Include="Models\CourseDetailsViewModel.cs" />
     <Compile Include="Models\EnrollCourseViewModel.cs" />
+    <Compile Include="Models\Extras.cs" />
     <Compile Include="Models\IsAttempted.cs" />
     <Compile Include="Models\LearnerEnroll.cs" />
     <Compile Include="Models\LectureResource.cs" />
@@ -1261,6 +1262,7 @@
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\QuizAttempt.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
+    <Compile Include="Models\Rule.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\ViewSubmissionViewModel.cs" />

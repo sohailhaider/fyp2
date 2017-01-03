@@ -14,6 +14,16 @@
                      -khtml-opacity 0;
                      -webkit-opacity 0;
                      opacity 0;">
+
+                    @{
+                        var msg = TempData["msg"];
+                        if (msg != null)
+                        {
+                            <script type="text/javascript">
+                                alert("Invalid Username or Passsword")
+                            </script>
+                        }
+                    }
                     <h2 class="text-capitalize ct-fw-600 ct-u-marginBottom40">Omni Learning and Teaching Environment</h2>
                     <p class="ct-u-marginBottom40 ct-fw-600">
                         An online learning system, where the user experiences a real

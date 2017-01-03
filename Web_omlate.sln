@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_omlate", "Web_omlate\Web_omlate.csproj", "{33AF9FDB-4D9D-459D-B053-5EE58556E5CF}"
 EndProject
@@ -26,14 +26,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://omlate.visualstudio.com/defaultcollection
-		SccProjectUniqueName0 = Web_omlate\\Web_omlate.csproj
-		SccProjectName0 = Web_omlate
-		SccLocalPath0 = Web_omlate
-		SccLocalPath1 = .
 	EndGlobalSection
 EndGlobal

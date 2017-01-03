@@ -192,10 +192,12 @@ namespace Web_omlate.Controllers
                 else
                 {
                     ViewBag.msg = "Invalid Username or Password";
+                    TempData["msg"] = "Invalid Username or Password";
                     return RedirectToAction("Index", "Default");
                 }
             }
             ViewBag.msg = "Invalid Username or Password";
+            TempData["msg"] = "Invalid Username or Password";
             return RedirectToAction("Index", "Default");
         }
 
