@@ -13,6 +13,7 @@ using System.Web.Http;
 using Web_omlate.DAO;
 using Web_omlate.ApiModels;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace Web_omlate.Controllers
 {
@@ -146,7 +147,10 @@ namespace Web_omlate.Controllers
 
         public JsonResult getAllCoursesWithLearnerId(string Username)
         {
-            List<OfferedCourseViewModelInAPI> courses = _db.OfferedCourses.Where(s=>s.FinishDate >= DateTime.Now).Select(x =>
+            List<OfferedCourse> suggested = GetSuggestedCourses(Username);
+
+            //_db.OfferedCourses.Where(s => s.FinishDate >= DateTime.Now).OrderByDescending(c => c.LearnerCount)
+            List<OfferedCourseViewModelInAPI> courses = suggested.Where(s=>s.FinishDate >= DateTime.Now).Select(x =>
                     new OfferedCourseViewModelInAPI
                     {
                         OfferedCourseID = x.OfferedCourseID,
@@ -154,9 +158,29 @@ namespace Web_omlate.Controllers
                         StartDate = x.StartingDate,
                         CreditHours = x.CreditHours,
                         FinishDate = x.FinishDate,
-                        Course = x.Course
+                        Course = x.Course,
+                        IsSuggested = "yes"
                     }
                  ).ToList();
+            List<OfferedCourse> all = _db.OfferedCourses.Where(s => s.FinishDate >= DateTime.Now).OrderByDescending(c => c.LearnerCount).ToList();
+
+            foreach(OfferedCourse x in all)
+            {
+                if(!courses.Where(s=>s.OfferedCourseID == x.OfferedCourseID).Any())
+                {
+                    courses.Add(new OfferedCourseViewModelInAPI
+                    {
+                        OfferedCourseID = x.OfferedCourseID,
+                        OfferedByID = x.OfferedByID,
+                        StartDate = x.StartingDate,
+                        CreditHours = x.CreditHours,
+                        FinishDate = x.FinishDate,
+                        Course = x.Course,
+                        IsSuggested = "no"
+                    });
+                }
+            }
+
             List<LearnerEnroll> enrolls = _db.LearnerEnrollments.Where(s => s.EnrolledLearnerID == Username.ToString()).ToList();
             foreach (LearnerEnroll enroll in enrolls)
             {
@@ -184,6 +208,7 @@ namespace Web_omlate.Controllers
                     s.Course.CourseCategoryID,
                     s.Course.CourseCode,
                     s.CreditHours,
+                    s.IsSuggested,
                     StartDate = s.StartDate.ToString("dd/MM/yyyy"),
                     FinishDate = s.FinishDate.ToString("dd/MM/yyyy"),
                     s.Course.CourseImage
@@ -510,6 +535,60 @@ namespace Web_omlate.Controllers
                 }, 
             }, JsonRequestBehavior.AllowGet);
 
+        }
+
+
+
+        public List<OfferedCourse> GetSuggestedCourses(String Username)
+        {
+            List<OfferedCourse> SuggestedCourses = new List<OfferedCourse>();
+            List<LearnerEnroll> enrolls = _db.LearnerEnrollments.Where(s => s.EnrolledLearnerID == Username.ToString()).ToList();
+            List<int> enrolledCourses = new List<int>();
+            foreach (LearnerEnroll le in enrolls)
+            {
+                enrolledCourses.Add(le.EnrolledCourseID);
+            }
+
+            var rules = _db.Rules.OrderByDescending(s => s.Confidence).ToList();
+            foreach (Rule r in rules)
+            {
+                List<int> Drivers = JsonConvert.DeserializeObject<List<int>>(r.Drivers);
+                var firstNotSecond = enrolledCourses.Except(Drivers).ToList();
+                var secondNotFirst = Drivers.Except(enrolledCourses).ToList();
+
+                if (!firstNotSecond.Any() && !secondNotFirst.Any())
+                {
+                    List<int> Indicates = JsonConvert.DeserializeObject<List<int>>(r.Indicates);
+                    foreach (int i in Indicates)
+                    {
+                        OfferedCourse oc = _db.OfferedCourses.Where(s => s.OfferedCourseID == i).FirstOrDefault();
+                        if (oc.FinishDate >= DateTime.Now)
+                        {
+                            SuggestedCourses.Add(oc);
+                        }
+                    }
+                }
+            }
+
+            //if (SuggestedCourses.Count < count)
+            //{
+            //    int remaining = count - SuggestedCourses.Count;
+            //    var allOfferedCourses = _db.OfferedCourses.Where(s => s.FinishDate >= DateTime.Now).OrderByDescending(d => d.LearnerCount).ToList();
+            //    int total = allOfferedCourses.Count;
+            //    int i = 0;
+            //    while(remaining>0 && i<total)
+            //    {
+            //        OfferedCourse ocTemp = allOfferedCourses.ElementAt(i);
+            //        if(SuggestedCourses.Where(c=>c.OfferedCourseID == ocTemp.OfferedCourseID).FirstOrDefault()==null && !enrolledCourses.Contains(ocTemp.OfferedCourseID))
+            //        {
+            //            remaining--;
+            //            SuggestedCourses.Add(ocTemp);
+            //        }
+            //        i++;
+            //    }
+            //}
+
+            return SuggestedCourses;
         }
     }
 

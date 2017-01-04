@@ -71,7 +71,7 @@ namespace Web_omlate.Controllers
                 return View(offeredCourses);
             }
             TempData["error_message"] = "Please Login or SignUp";
-            return View("Index", "Default");
+            return RedirectToAction("Index", "Default");
         }
 
         public ActionResult ViewOfferedCourses()
@@ -79,7 +79,7 @@ namespace Web_omlate.Controllers
             var username = Session["username"];
             if (username != null)
             {
-                List<OfferedCoursesViewModel> courses = _db.OfferedCourses.Where(s=>s.FinishDate >=DateTime.Now).Select(x =>
+                List<OfferedCoursesViewModel> courses = _db.OfferedCourses.Where(s=>s.FinishDate >=DateTime.Now).OrderByDescending(c=>c.LearnerCount).Select(x =>
                     new OfferedCoursesViewModel
                     {
                         OfferedCourseID = x.OfferedCourseID,
@@ -96,8 +96,8 @@ namespace Web_omlate.Controllers
                 ViewBag.Suggested = GetSuggestedCourses(username.ToString());
                 return View(courses);
             }
-            TempData["error_message"] = "Please Login or SignUp";
-            return View("Index", "Default");
+            //TempData["msg"] = "Please Login or SignUp";
+            return RedirectToAction("Index", "Default");
         }
 
         public ActionResult ViewCourseDetails(int offeredCourseId)

@@ -14,6 +14,8 @@ namespace Web_omlate.ApiModels
 
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
+
+        public String IsSuggested { get; set; }
         public Course Course { get; set; }
 
         public Decimal CreditHours { get; set; }

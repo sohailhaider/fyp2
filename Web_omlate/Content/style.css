@@ -8382,6 +8382,7 @@ header .ct-showcaseBox--withImagePerson .ct-u-displayTableCell:first-child {
 .ct-productBox .ct-productDescription {
   padding: 16px;
   color: #2d2d2d;
+  height: 129px;
 }
 .ct-productBox .ct-productDescription h1,
 .ct-productBox .ct-productDescription h2,

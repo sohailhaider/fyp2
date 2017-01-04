@@ -89,6 +89,7 @@ namespace Web_omlate.Controllers
 
                             offeredCourse.Course = c;
                             offeredCourse.OfferdBy = user;
+                            offeredCourse.OfferedByID = user.Username;
                             offeredCourse.LearnerCount = 0;
                             _db.OfferedCourses.Add(offeredCourse);
                             _db.SaveChanges();
@@ -96,7 +97,7 @@ namespace Web_omlate.Controllers
                             ViewBag.courseCategories = new SelectList(_db.CourseCategories, "CourseCategoryID", "CategoryName");
                             ViewBag.instructor = _db.Users.Where(x => x.Type == "instructor").Select(y => y.Username).FirstOrDefault();
                             ViewBag.msg = "Successfully Offered said course";
-                            return View();
+                            return OfferACourse();
                         }
                         ViewBag.msg = "You have already Offered said course";
                         ViewBag.courseCategories = new SelectList(_db.CourseCategories, "CourseCategoryID", "CategoryName");
@@ -214,7 +215,7 @@ namespace Web_omlate.Controllers
             if (name != null)
             {
                 var dt = DateTime.Now.Date;
-                var schedules = _db.LectureSchedules.Where(x => x.OfferedCourse.OfferdBy.Username == name.ToString() && x.LectureDate >= dt).OrderByDescending(s=>  new { s.LectureDate, s.LectureTime}).ToList();
+                var schedules = _db.LectureSchedules.Where(x => x.OfferedCourse.OfferdBy.Username == name.ToString() && x.LectureDate >= dt).OrderBy(s=>  new { s.LectureDate, s.LectureTime}).ToList();
                 var toDel = schedules.Where(s => s.LectureDate == dt && s.LectureTime < DateTime.Now.TimeOfDay).ToList();
                 foreach (var item in toDel)
                 {
@@ -535,8 +536,8 @@ namespace Web_omlate.Controllers
             var name = Session["username"];
             if (name != null)
             {
-                ViewBag.quizs = _db.Quizs.Where(q => q.InstructorID == (String)name).ToList();
-                ViewBag.offeredCourses = _db.OfferedCourses.Where(q => q.OfferedByID == (String)name).ToList();
+                ViewBag.quizs = _db.Quizs.Where(q => q.InstructorID == (String)name).OrderByDescending(s=>s.Deadline).ToList();
+                ViewBag.offeredCourses = _db.OfferedCourses.Where(q => q.OfferedByID == (String)name).OrderByDescending(s=>s.FinishDate).ToList();
                 //ViewBag.title = ;
                 return View();
             }
